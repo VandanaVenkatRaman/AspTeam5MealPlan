@@ -1,0 +1,87 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "Home";
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Home | Meal Planner</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/popper.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/meal-planner.js"></script>
+    <style>
+        .header-image {
+            position: relative;
+            height: auto;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        img {
+            position: relative;
+            width: 100%;
+            max-height: 200px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="container-fluid header-image">
+            <img src="~/Assets/header-image.jpg" class="img-fluid" />
+        </div>
+        <div class="container-fluid bg-info text-center w-100 h-100">
+            <h1 class="font-weight-bolder text">Hungry? Looking to Eat Healthy?</h1>
+            <h2>
+                Complete the short form below to see what you could be enjoying today.
+                <br />
+                Your body thanks you!
+            </h2>
+        </div>
+        <div class="container-fluid text-center" style="padding-top: 10px;">
+            <table class="table table-borderless text-center">
+                <tr>
+                    <td>
+                        I want to eat
+                        <input type="text" id="calories" />
+                        calories per day, split into
+                        <input type="text" id="meals" /> meals.
+                    </td>
+                </tr>
+            </table>
+            <button class="btn btn-primary">Generate my meals!</button>
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>Meal</tr>
+                    <tr>Calories</tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>123</td>
+                        <td>123</td>
+                    </tr>
+                    <tr>
+                        <td>456</td>
+                        <td>456</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-3">
+            Interested? Click <a href="@Url.Action("/Register")">Here</a> to Register
+        </div>
+        <div class="col-3">
+            Already a Member? <a href="@Url.Action("/SignIn")">Sign In</a>
+        </div>
+    </div>
+</body>
+</html>
+
+
