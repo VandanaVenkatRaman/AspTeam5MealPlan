@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MealPlanner.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -28,8 +29,12 @@ namespace MealPlanner.Controllers
         }
         public ActionResult Register()
         {
+
             return View("Register");
         }
+
+      
+
         public ActionResult SignIn()
         {
             return View("SignIn");
