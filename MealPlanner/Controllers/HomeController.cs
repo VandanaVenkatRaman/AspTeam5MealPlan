@@ -1,8 +1,11 @@
-﻿using System;
+﻿using MealPlanner.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using unirest_net.http;
 
 namespace MealPlanner.Controllers
 {
@@ -33,6 +36,19 @@ namespace MealPlanner.Controllers
         public ActionResult SignIn()
         {
             return View("SignIn");
+        }
+
+        [HttpGet]
+        public ActionResult DemoMealPlan()
+        {
+            ViewBag.Message = "Demo Meal Plan Page";
+
+            HttpResponse<string> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate?timeFrame=day&targetCalories=2000")
+                .header("X-RapidAPI-Host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
+                .header("X-RapidAPI-Key", "")
+                .asJson<string>();
+
+            return View(new MealPlan(response.Body));
         }
     }
 }
