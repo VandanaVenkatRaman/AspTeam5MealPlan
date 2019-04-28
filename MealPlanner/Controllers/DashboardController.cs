@@ -11,46 +11,15 @@ namespace MealPlanner.Controllers
 {
     public class DashboardController : Controller
     {
-        public ActionResult Index()
+        //id should be stored in session state
+        public ActionResult Index(int id)
         {
-            UserBusinessLayer userBusinessLayer = new UserBusinessLayer();
-            List<User> users = userBusinessLayer.Users.ToList();
-           
+            UserBusinessLayer  userBusinessLayer = new UserBusinessLayer();
+            User user=  userBusinessLayer.GetUser(id);
 
-
-            return View(users);
+            return View(user);
         }
 
-        [HttpGet]
-        [ActionName("Create")]
-        public ActionResult Create_Get()
-        {
-
-            return View();
-        }
-
-        [HttpPost]
-        //using action method attibute
-        [ActionName("Create")]
-        public ActionResult Create_Post(User user)
-        {
-       
-
-            if (ModelState.IsValid)
-            {
-
-                
-                UserBusinessLayer userBusinessLayer = new UserBusinessLayer();
-                userBusinessLayer.AddUser(user);
-          
-                return RedirectToAction("Index");
-
-
-            }
-
-            return View();
-
-        }
 
 
         [HttpGet]
@@ -58,8 +27,9 @@ namespace MealPlanner.Controllers
         public ActionResult Edit(int id)
         {
             UserBusinessLayer userBusinessLayer = new UserBusinessLayer();
-           User user = userBusinessLayer.Users.Single(u => u.UserID == id);
-
+          
+            User user = userBusinessLayer.GetUser(id);
+        
 
             return View(user);
         }
@@ -78,12 +48,28 @@ namespace MealPlanner.Controllers
                 UserBusinessLayer userBusinessLayer = new UserBusinessLayer();
 
                 userBusinessLayer.SaveUser(user);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = user.UserID });
             }
 
             return View(user);
 
         }
+
+
+
+        public ActionResult DisplayBodyStats(int id)
+        {
+            
+            BodyStatsBusinessLayer bodyStatsBusinessLayer = new BodyStatsBusinessLayer();
+            List<BodyStats> bodyStatss = bodyStatsBusinessLayer.GetBodyStats(id);
+
+
+            return View(bodyStatss);
+        }
+
+
+
+
 
 
         //right now delete funtion is not able to use since userID is the foreign key of physicalStats table
@@ -95,7 +81,7 @@ namespace MealPlanner.Controllers
         //    //employeeBusinessLayer.DeleteEmployee(Id);
         //    UserBusinessLayer userBusinessLayer = new UserBusinessLayer();
         //    userBusinessLayer.DeleteUser(id);
-            
+
         //    return RedirectToAction("Index");
         //}
 

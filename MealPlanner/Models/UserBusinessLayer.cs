@@ -10,41 +10,49 @@ namespace MealPlanner.Models
 {
     public class UserBusinessLayer
     {
-        // retrieve data to outpur to view
-        public IEnumerable<User> Users
-        {
-            get
-            {
-                string connectionString = ConfigurationManager.ConnectionStrings["MealPlannerContext"].ConnectionString;
-                List<User> users = new List<User>();
+       
 
+
+        public User GetUser(int id)
+        {
+            User user = new User();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["MealPlannerContext"].ConnectionString;
+                
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("spGetAllUsers", con);
+                    SqlCommand cmd = new SqlCommand("spGetUser", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    con.Open();
 
+
+                    SqlParameter paramUserID = new SqlParameter();
+                    paramUserID.ParameterName = "@UserID";
+                    paramUserID.Value = id;
+                    cmd.Parameters.Add(paramUserID);
+
+                    con.Open();
+               
+    
                     SqlDataReader rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {
-                        User user = new User();
-                        user.UserID = Convert.ToInt32(rdr["UserID"]);
-                        user.FirstName = rdr["FirstName"].ToString();
+                  
+                       user.UserID = id;
+                         user.FirstName = rdr["FirstName"].ToString();
                         user.LastName = rdr["LastName"].ToString();
                         user.Email = rdr["Email"].ToString();
                         user.Password = rdr["Password"].ToString();
 
-                       
 
-                        users.Add(user);
                     }
                 }
-
-                return users;
+                return user;
             }
 
-        }
+        
 
+
+       
 
         // insert user into database in regirstration
 
@@ -87,12 +95,6 @@ namespace MealPlanner.Models
             }
 
         }
-
-
-
-
-
-
 
 
 

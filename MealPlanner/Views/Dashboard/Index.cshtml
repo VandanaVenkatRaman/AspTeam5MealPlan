@@ -1,64 +1,59 @@
-﻿@model IEnumerable<MealPlanner.Models.User>
+﻿@model MealPlanner.Models.User
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Account Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div style="font-family:Arial">
-    <h2>Index</h2>
+    <h2>Account Details</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
+    <div class="container">
+        <h4>User</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <div class="form-group">
+                <dt>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
 
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th></th>
-        </tr>
+                <dd>
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
+            </div>
+            <div class="form-group">
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
 
-        @foreach (var item in Model)
-        {
-            using (Html.BeginForm("Delete", "Dashboard", new { id = item.UserID }))
-            {
+                <dd>
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+            </div>
+            <div class="form-group">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
 
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+            </div>
+            <div class="form-group">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Password)
+                </dt>
 
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
+                <dd>
+                    @Html.DisplayFor(model => model.Password)
+                   
+                </dd>
+            </div>
+        </dl>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Password)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
-
-                        <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete record wiht ID= @item.UserID);" />
-
-
-                    </td>
-                </tr>
-            }
-        }
-
-    </table>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) 
+            
+        </p>
+    </div>
 </div>

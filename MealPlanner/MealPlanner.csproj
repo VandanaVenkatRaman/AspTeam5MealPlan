@@ -121,6 +121,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BodyStats.cs" />
+    <Compile Include="Models\BodyStatsBusinessLayer.cs" />
     <Compile Include="Models\UserBusinessLayer.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -205,8 +207,8 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\SignIn.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Views\Dashboard\Create.cshtml" />
     <Content Include="Views\Dashboard\Edit.cshtml" />
+    <Content Include="Views\Dashboard\DisplayBodyStats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
