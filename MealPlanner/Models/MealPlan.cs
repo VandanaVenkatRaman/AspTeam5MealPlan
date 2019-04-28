@@ -11,15 +11,12 @@ using unirest_net.http;
 
 namespace MealPlanner.Models
 {
+    [Serializable]
     public class MealPlan
     {
-        public List<Meal> Meals { get; set; }
-
-        public MealPlan(string meal)
-        {
-            var jsonStr = new JavaScriptSerializer();
-
-            Meals = jsonStr.Deserialize<List<Meal>>(meal);
-        }
+        [JsonProperty("meals")]
+        public Meal[] Meals { get; set; }
+        [JsonProperty("nutrients")]
+        public Object Nutrients { get; set; }
     }
 }

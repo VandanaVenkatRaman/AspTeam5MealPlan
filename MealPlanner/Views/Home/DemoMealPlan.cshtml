@@ -1,7 +1,4 @@
-﻿@using MealPlanner.Models
-@model MealPlanner.Models.MealPlan
-
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,7 +6,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Home | Meal Planner</title>
+    <title>Demo Meal Plan | Meal Planner</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/popper.js"></script>
@@ -34,15 +31,23 @@
 <body>
     <h1>Demo Meal Plan</h1>
 
-    @{ 
-        foreach (var m in Model.Meals)
-        {
-            <h2>@m.Title</h2>
-            <h3>Ready in (minutes): @m.ReadyInMinutes</h3>
-            <h3>Serves: @m.ReadyInMinutes</h3>
-            <h3>ID: @m.Id</h3>
-            <img src=@m.Image>
-        }
+    @{
+        var demo = ViewBag.Message;
+
+        <h2>Title: @demo["meals"][0]["title"]</h2>
+        <h2>Ready In (Minutes): @demo["meals"][0]["readyInMinutes"]</h2>
+        <h2>Serves: @demo["meals"][0]["servings"]</h2>
+        <h2>ID: @demo["meals"][0]["id"]</h2>
+        <br />
+        <h2>Title: @demo["meals"][1]["title"]</h2>
+        <h2>Ready In (Minutes): @demo["meals"][1]["readyInMinutes"]</h2>
+        <h2>Serves: @demo["meals"][1]["servings"]</h2>
+        <h2>ID: @demo["meals"][1]["id"]</h2>
+        <br />
+        <h2>Title: @demo["meals"][2]["title"]</h2>
+        <h2>Ready In (Minutes): @demo["meals"][2]["readyInMinutes"]</h2>
+        <h2>Serves: @demo["meals"][2]["servings"]</h2>
+        <h2>ID: @demo["meals"][2]["id"]</h2>
     }
 </body>
 </html>

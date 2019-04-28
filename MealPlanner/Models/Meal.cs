@@ -19,5 +19,7 @@ namespace MealPlanner.Models
         public int Servings { get; set; }
         [JsonProperty("image")]
         public string Image { get; set; }
+        [JsonProperty("imageUrls")]
+        public string[] ImageUrls { get; set; }
     }
 }
