@@ -44,6 +44,7 @@ namespace MealPlanner.Controllers
         [HttpGet]
         public ActionResult DemoMealPlan()
         {
+            //removed api-key
             HttpResponse<string> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate?timeFrame=day&targetCalories=2000")
                 .header("X-RapidAPI-Host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
                 .header("X-RapidAPI-Key", "")
@@ -52,7 +53,7 @@ namespace MealPlanner.Controllers
             var demo = JsonConvert.DeserializeObject(response.Body);
 
             ViewBag.Message = demo;
-            return View();
+            return View("DemoMealPlan");
 
         }
     }
