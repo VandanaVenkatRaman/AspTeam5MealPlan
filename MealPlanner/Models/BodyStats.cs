@@ -15,15 +15,20 @@ namespace MealPlanner.Models
         [Display(Name = "UserId")]
         public int UserId { get; set; }
 
+        [Required]
+        [Display(Name = "HeightFeet")]
+        public double HeightFeet { get; set; }
 
         [Required]
-        [Display(Name = "Height")]
-        public double Height { get; set; }
+        [Display(Name = "HeightInches")]
+        public double HeightInches { get; set; }
 
 
         [Required]
         [Display(Name = "Weight")]
         public double Weight { get; set; }
+
+        
 
         [Required]
         [Display(Name = "TargetWeight")]
@@ -47,7 +52,7 @@ namespace MealPlanner.Models
 
         [Required]
         [Display(Name = "ActivityLevel")]
-        public string ActivityLevel { get; set; }
+        public MealPlanner.Models.Enums.ActivityLevel ActivityLevel { get; set; }
 
 
 
@@ -57,7 +62,11 @@ namespace MealPlanner.Models
 
         [Required]
         [Display(Name = "Gender")]
-        public bool Gender { get; set; }
+        public MealPlanner.Models.Enums.Gender Gender  { get; set; }
+
+        [Required]
+        [Display(Name = "AddDate")]
+        public DateTime AddDate { get; set; }
 
 
 

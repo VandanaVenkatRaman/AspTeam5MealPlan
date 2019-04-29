@@ -1,0 +1,108 @@
+﻿@model IEnumerable<MealPlanner.Models.BodyStats>
+
+@{
+    ViewBag.Title = "BodyStats";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="font-family:Arial">
+   
+        <h2>BodyStats</h2>
+
+        <p>
+       
+            @Html.ActionLink("Add Your Newest Body Status", "AddBodyStatus", new { id = ViewBag.data})
+        </p>
+
+        <table class="table">
+            <tr>
+
+
+                <th>
+                    @Html.DisplayNameFor(model => model.HeightFeet)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HeightInches)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Weight)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TargetWeight)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TargetCalories)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TargetDays)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BMI)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActivityLevel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AddDate)
+                </th>
+                <th>Action</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                using (Html.BeginForm("DeletebodyStats", "Dashboard", new { id = item.BodyStatId }))
+                {
+
+         
+            <tr>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.HeightFeet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HeightInches)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TargetWeight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TargetCalories)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TargetDays)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BMI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActivityLevel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+
+                <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditBodyStats", new { UserId = item.UserId, id = item.BodyStatId }) |
+
+                    <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete record wiht ID= @item.BodyStatId');" />
+                </td>
+            </tr>
+                }
+            }
+
+        </table>
+    </div>

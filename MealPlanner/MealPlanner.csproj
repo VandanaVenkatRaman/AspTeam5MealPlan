@@ -117,12 +117,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Register.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BodyStats.cs" />
     <Compile Include="Models\BodyStatsBusinessLayer.cs" />
+    <Compile Include="Models\Enums\ActivityLevel.cs" />
+    <Compile Include="Models\Enums\Gender.cs" />
+    <Compile Include="Models\PhysicalCalculation.cs" />
+    <Compile Include="Models\RegisterPageModel.cs" />
     <Compile Include="Models\UserBusinessLayer.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -200,7 +203,6 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Home.cshtml" />
-    <Content Include="Views\Dashboard\PhysicalProfile.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\View.cshtml" />
@@ -208,11 +210,12 @@
     <Content Include="Views\Home\SignIn.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Dashboard\Edit.cshtml" />
-    <Content Include="Views\Dashboard\DisplayBodyStats.cshtml" />
+    <Content Include="Views\Dashboard\BodyStats.cshtml" />
+    <Content Include="Views\Dashboard\AddBodyStatus.cshtml" />
+    <Content Include="Views\Dashboard\EditBodyStats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

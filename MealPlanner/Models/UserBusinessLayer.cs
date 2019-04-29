@@ -167,7 +167,39 @@ namespace MealPlanner.Models
         }
 
 
-        
+        public int GetUserId(RegisterPageModel registerPageModel)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["MealPlannerContext"].ConnectionString;
+            int UserID = 1;
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spGetUserIdOnName", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter paramFirstName = new SqlParameter();
+                paramFirstName.ParameterName = "@FirstName";
+                paramFirstName.Value = registerPageModel.User.FirstName;
+                cmd.Parameters.Add(paramFirstName);
+
+                SqlParameter paramLastName = new SqlParameter();
+                paramLastName.ParameterName = "@LastName";
+                paramLastName.Value = registerPageModel.User.LastName;
+                cmd.Parameters.Add(paramLastName);
+
+                con.Open();
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    UserID = Convert.ToInt32(rdr["UserID"]);
+                }
+
+
+            }
+
+            return UserID;
+        }
+
 
 
 
