@@ -1,8 +1,4 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -34,20 +30,14 @@
     @{
         var demo = ViewBag.Message;
 
-        <h2>Title: @demo["meals"][0]["title"]</h2>
-        <h2>Ready In (Minutes): @demo["meals"][0]["readyInMinutes"]</h2>
-        <h2>Serves: @demo["meals"][0]["servings"]</h2>
-        <h2>ID: @demo["meals"][0]["id"]</h2>
-        <br />
-        <h2>Title: @demo["meals"][1]["title"]</h2>
-        <h2>Ready In (Minutes): @demo["meals"][1]["readyInMinutes"]</h2>
-        <h2>Serves: @demo["meals"][1]["servings"]</h2>
-        <h2>ID: @demo["meals"][1]["id"]</h2>
-        <br />
-        <h2>Title: @demo["meals"][2]["title"]</h2>
-        <h2>Ready In (Minutes): @demo["meals"][2]["readyInMinutes"]</h2>
-        <h2>Serves: @demo["meals"][2]["servings"]</h2>
-        <h2>ID: @demo["meals"][2]["id"]</h2>
+        foreach (var m in demo["meals"])
+        {
+            <h2>Title: @m["title"]</h2>
+            <h3>Ready In (Minutes): @m["readyInMinutes"]</h3>
+            <h3>Serves: @m["servings"]</h3>
+            <h4>ID: @m["id"]</h4>
+            <br />
+        }
     }
 </body>
 </html>
