@@ -40,9 +40,19 @@ namespace MealPlanner.Models
                          
                         body.BodyStatId = Convert.ToInt32(rdr["BodyStatId"]);
                          body.UserId = id;
-                         body.HeightFeet = Convert.ToDouble(rdr["Height"]);
-                        body.TargetWeight = Convert.ToDouble(rdr["TargetWeight"]);
-                        body.TargetCalories = Convert.ToDouble(rdr["TargetCalories"]);
+
+
+
+                      body.HeightFeet = physicalCalculation.CmConvertFeet(Convert.ToDouble(rdr["Height"]));
+
+
+                    body.HeightInches = physicalCalculation.CmConvertIn(Convert.ToDouble(rdr["Height"]));
+
+                   
+                    body.Weight = physicalCalculation.ConvertToLb( Convert.ToDouble(rdr["Weight"]));
+                    body.TargetWeight = physicalCalculation.ConvertToLb(Convert.ToDouble(rdr["TargetWeight"]));
+                    
+                          body.TargetCalories = Convert.ToDouble(rdr["TargetCalories"]);
                         body.TargetDays = Convert.ToInt32(rdr["TargetDays"]);
                         body.BMI = Convert.ToDouble(rdr["BMI"]);
                    

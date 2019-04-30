@@ -8,6 +8,7 @@ namespace MealPlanner.Models
 {
     public class PhysicalCalculation
     {
+        //convert to cm from feet and inch
         public double ConvertWeight(double pounds)
         {
             double kg;
@@ -15,11 +16,44 @@ namespace MealPlanner.Models
             return kg;
         }
 
+        //convert to lg from lb
         public double ConvertHeight(double feets, double inches)
         {
             double cm;
             cm = ((feets * 12) + inches) * 2.5;
             return cm;
+        }
+
+        //convert cm to heet and inch 
+//   
+            public double CmConvertFeet(double cm)
+        {
+            int feet = 0;
+            int inches = (int)(Math.Round(cm / 2.54));
+
+            feet = inches / 12;
+            return (double)feet;
+        }
+
+
+
+        public double CmConvertIn(double cm)
+        {
+            double In = 0;
+            int inches = (int)(Math.Round(cm / 2.54));
+
+            In = inches % 12;
+            return In;
+        }
+
+
+        //convert lg to lb
+        public double ConvertToLb(double kg)
+        {
+            double lb;
+           
+            lb = kg / 0.45;
+            return lb;
         }
 
         public double BMIcalculation(double kg, double cm)
