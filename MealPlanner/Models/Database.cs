@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -16,7 +16,7 @@ namespace MealPlanner.Models
         {
             {"Sedentary", 1.2},
             {"Lightly Active", 1.375},
-            {"Moderate", 1.55},
+            {"Moderately Active", 1.55},
             {"Very Active", 1.725},
             {"Extremely Active", 1.9}
         };
