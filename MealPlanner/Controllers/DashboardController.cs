@@ -17,5 +17,17 @@ namespace MealPlanner.Controllers
         {
             return View("PhysicalProfile");
         }
+        public ActionResult UserDashboard()
+        {
+            if (HttpContext.Session["UserId"] != null)
+            {
+                string userid = HttpContext.Session["UserId"].ToString();
+                return View("UserDashboard");
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
     }
 }
