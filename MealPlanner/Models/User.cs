@@ -14,8 +14,6 @@ namespace MealPlanner.Models
         public string FirstName { get; set; }
         [JsonProperty("lname")]
         public string LastName { get; set; }
-        [JsonProperty("age")]
-        public int Age { get; set; }
         [JsonProperty("userId")]
         public int UserId { get; set; }
         [JsonProperty("password")]
@@ -24,9 +22,8 @@ namespace MealPlanner.Models
         public string Email { get; set; }
         [JsonProperty("confirmPassword")]
         public string ConfirmPassword { get; set; }
-        [JsonProperty("gender")]
-        public bool Gender { get; set; }
         [JsonProperty("bodyStats")]
         public BodyStats BodyStats { get; set; }
+      
     }
 }
