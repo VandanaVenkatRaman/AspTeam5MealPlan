@@ -19,59 +19,64 @@ namespace MealPlanner.Controllers
         [HttpPost]
         public ActionResult Register()
         {
-            User u = new User
+            if (int.TryParse(Request["daysToGoal"], out int daysToGoal) && int.TryParse(Request["weightGoal"], out int weightGoal)
+                && int.TryParse(Request["heightFeet"], out int heightFeet) && int.TryParse(Request["heightInches"], out int heightInches)
+                && int.TryParse(Request["weight"], out int weight) && int.TryParse(Request["age"], out int age))
             {
-                FirstName = Request["fname"],
-                LastName = Request["lname"],
-                Age = int.Parse(Request["age"]),
-                Email = Request["email"],
-                Password = Request["password"],
-                ConfirmPassword = Request["confirmPassword"],
-                Gender = Convert.ToBoolean(Convert.ToInt32(Request["gender"])),
-                BodyStats = new BodyStats
-               {
-                    ActivityLevel = Request["activityLevel"],
-                    DaysToGoal = int.Parse(Request["daysToGoal"]),
-                   WeightGoal = int.Parse(Request["weightGoal"]),
-                   HeightFeet = int.Parse(Request["heightFeet"]),
-                   HeightInches = int.Parse(Request["heightInches"]),
-                   Weight = int.Parse(Request["weight"]),
-                   LoseOrMaintainWeight = Convert.ToBoolean(Convert.ToInt32(Request["loseOrMaintainWeight"]))
-               }
-            };
-            if (Database.AddUserToDatabase(u))
-            {
-                if (Database.AddBodyStats(u))
+                User u = new User
                 {
-                    return Json(new { Status = (int)HttpStatusCode.OK });
+                    FirstName = Request["fname"],
+                    LastName = Request["lname"],
+                    Email = Request["email"],
+                    Password = Request["password"],
+                    ConfirmPassword = Request["confirmPassword"],
+                    BodyStats = new BodyStats
+                    {
+                        ActivityLevel = Request["activityLevel"],
+                        DaysToGoal = daysToGoal,
+                        WeightGoal = weightGoal,
+                        HeightFeet = heightFeet,
+                        HeightInches = heightInches,
+                        Weight = weight,
+                        Age = age,
+                        Gender = Convert.ToBoolean(Convert.ToInt32(Request["gender"])),
+                        LoseOrMaintainWeight = Convert.ToBoolean(Convert.ToInt32(Request["loseOrMaintainWeight"]))
+                    }
+                };
+                if (Database.AddUserToDatabase(u))
+                {
+                    if (Database.AddBodyStats(u))
+                    {
+                        return Json(new { Status = (int)HttpStatusCode.OK });
 
+                    }
                 }
+                return Json(new { Status = (int)HttpStatusCode.InternalServerError });
             }
-            return Json(new { Status = (int)HttpStatusCode.InternalServerError });
-
-        }
-
-        [HttpPost]
-        public ActionResult SignIn(string username, string password)
-        {
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            else
             {
                 return Json(new { Status = (int)HttpStatusCode.BadRequest });
             }
 
-            if (ValidateUsernamePassword(username, password))
+        }
+
+        [HttpGet]
+        public ActionResult SignIn(string userid, string password)
+        {
+            if (string.IsNullOrWhiteSpace(userid) || string.IsNullOrWhiteSpace(password))
             {
-                return View("UserDashboard");
+                return Json(new { Status = (int)HttpStatusCode.BadRequest }, JsonRequestBehavior.AllowGet);
+            }
+
+            if (Database.ValidateUser(userid, password))
+            {
+                HttpContext.Session["UserId"] = userid;
+                return Json(new { Status = (int)HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                return Json(new { Status = (int)HttpStatusCode.Unauthorized });
+                return Json(new { Status = (int)HttpStatusCode.Unauthorized }, JsonRequestBehavior.AllowGet);
             }
-        }
-
-        private bool ValidateUsernamePassword(string username, string password)
-        {
-            return true;
         }
 
         public void SignOut()
