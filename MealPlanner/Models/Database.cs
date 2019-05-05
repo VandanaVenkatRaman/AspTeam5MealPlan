@@ -31,8 +31,6 @@ namespace MealPlanner.Models
                     com.CommandType = CommandType.StoredProcedure;
                     com.Parameters.AddWithValue("FirstName", u.FirstName);
                     com.Parameters.AddWithValue("LastName", u.LastName);
-                    com.Parameters.AddWithValue("Age", u.Age);
-                    com.Parameters.AddWithValue("Gender", u.Gender);
                     com.Parameters.AddWithValue("Email", u.Email);
                     com.Parameters.AddWithValue("Password", u.Password);
                     using (SqlDataReader reader = com.ExecuteReader())
@@ -53,8 +51,8 @@ namespace MealPlanner.Models
         {
             var height = (u.BodyStats.HeightFeet * 12) + u.BodyStats.HeightInches;
             var weight = u.BodyStats.Weight;
-            var gender = u.Gender;
-            var age = u.Age;
+            var gender = u.BodyStats.Gender;
+            var age = u.BodyStats.Age;
 
             //if gender == true, male calculation : false, female calculation
             var bmr = gender ? 66 + (6.3F * weight) + (12.9F * height) - (6.8 * age) : 655 + (4.3F * weight) + (4.7F * height) - (4.7 * age);
@@ -71,18 +69,23 @@ namespace MealPlanner.Models
                 con.Open();
                 using (SqlCommand com = new SqlCommand("dbo.AddUserBodyStats", con))
                 {
+                    double weight = convertWeight(u.BodyStats.Weight);
+                    double height = convertHeight(u.BodyStats.HeightFeet,u.BodyStats.HeightInches );
+                    double BMI = BMICalculation(weight, height);
                     
 
                     com.CommandType = CommandType.StoredProcedure;
                     com.Parameters.AddWithValue("UserId", u.UserId);
-                    com.Parameters.AddWithValue("Height", (float)u.BodyStats.HeightFeet);
-                    com.Parameters.AddWithValue("Weight",(float)u.BodyStats.Weight);
+                    com.Parameters.AddWithValue("Height", (float)height);
+                    com.Parameters.AddWithValue("Weight", (float)weight);
                     com.Parameters.AddWithValue("TargetWeight", (float)u.BodyStats.WeightGoal);
                     //TODO: Fetch targetCalories from API
                     com.Parameters.AddWithValue("TargetCalories", GetTargetCalories(u));
                     com.Parameters.AddWithValue("TargetDays", (float)u.BodyStats.DaysToGoal);
-                    com.Parameters.AddWithValue("BMI", u.BodyStats.WeightGoal * 1.0 / u.BodyStats.HeightFeet);
+                    com.Parameters.AddWithValue("BMI", (float)BMI);
                     com.Parameters.AddWithValue("ActivityLevel", u.BodyStats.ActivityLevel);
+                    com.Parameters.AddWithValue("Age", u.BodyStats.Age);
+                    com.Parameters.AddWithValue("Gender", u.BodyStats.Gender);
                     using (SqlDataReader reader = com.ExecuteReader())
                     {
                         if (reader.HasRows && reader.Read())
@@ -95,6 +98,24 @@ namespace MealPlanner.Models
                 }
                 return false;
             }
+        public static double convertWeight(int pounds)
+        {
+            double kg;
+            kg = pounds * 0.45;
+            return kg;
+        }
+        public static double convertHeight(int feets, int inches)
+        {
+            double cm;
+            cm = ((feets * 12) + inches) * 2.5;
+            return cm;
+        }
+        public static double BMICalculation(double kg, double cm)
+        {
+            double BMI;
+            BMI = kg / Math.Pow(cm / 100.0, 2);
+            return BMI;
+
         }
     }
 }
