@@ -42,7 +42,7 @@ namespace MealPlanner.Controllers
                         Age = age,
                         // Gender = Convert.ToBoolean(Convert.ToInt32(Request["gender"])),
                         Gender = (Models.Enums.Gender)Enum.Parse(typeof(Models.Enums.Gender), Request["gender"]),
-                
+
                         LoseOrMaintainWeight = Convert.ToBoolean(Convert.ToInt32(Request["loseOrMaintainWeight"]))
                     }
                 };
