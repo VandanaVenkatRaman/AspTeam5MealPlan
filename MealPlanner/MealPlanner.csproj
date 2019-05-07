@@ -125,7 +125,6 @@
     <Compile Include="Models\Enums\ActivityLevel.cs" />
     <Compile Include="Models\Enums\Gender.cs" />
     <Compile Include="Models\PhysicalCalculation.cs" />
-    <Compile Include="Models\RegisterPageModel.cs" />
     <Compile Include="Models\UserBusinessLayer.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

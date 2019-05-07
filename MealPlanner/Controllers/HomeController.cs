@@ -22,27 +22,27 @@ namespace MealPlanner.Controllers
         }
 
         //[HttpPost]
-        public ActionResult Register(RegisterPageModel registerPageModel)
-        {
-            if (ModelState.IsValid)
-            {
+        //public ActionResult Register(RegisterPageModel registerPageModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
 
 
-                UserBusinessLayer userBusinessLayer = new UserBusinessLayer();
-                userBusinessLayer.AddUser(registerPageModel.User);
-                Session["id"]= userBusinessLayer.GetUserId(registerPageModel);
+        //        UserBusinessLayer userBusinessLayer = new UserBusinessLayer();
+        //        userBusinessLayer.AddUser(registerPageModel.User);
+        //        Session["id"]= userBusinessLayer.GetUserId(registerPageModel);
                 
                 
-                registerPageModel.BodyStats.UserId =(int) Session["id"];
-                BodyStatsBusinessLayer bodyStatsBusinessLayer = new BodyStatsBusinessLayer();
-                bodyStatsBusinessLayer.AddBodyStats(registerPageModel.BodyStats);
+        //        registerPageModel.BodyStats.UserId =(int) Session["id"];
+        //        BodyStatsBusinessLayer bodyStatsBusinessLayer = new BodyStatsBusinessLayer();
+        //        bodyStatsBusinessLayer.AddBodyStats(registerPageModel.BodyStats);
 
 
 
-            }
+        //    }
 
-            return View();
-        }
+        //    return View();
+        //}
 
         public ActionResult SignIn()
         {
