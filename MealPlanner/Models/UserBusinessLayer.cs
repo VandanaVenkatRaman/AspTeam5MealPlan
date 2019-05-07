@@ -37,7 +37,7 @@ namespace MealPlanner.Models
                     while (rdr.Read())
                     {
                   
-                       user.UserID = id;
+                       user.UserId = id;
                          user.FirstName = rdr["FirstName"].ToString();
                         user.LastName = rdr["LastName"].ToString();
                         user.Email = rdr["Email"].ToString();
@@ -110,7 +110,7 @@ namespace MealPlanner.Models
 
                 SqlParameter paramUserID = new SqlParameter();
                 paramUserID.ParameterName = "@UserID";
-                paramUserID.Value = user.UserID;
+                paramUserID.Value = user.UserId;
                 cmd.Parameters.Add(paramUserID);
 
                 SqlParameter paramFirstName = new SqlParameter();

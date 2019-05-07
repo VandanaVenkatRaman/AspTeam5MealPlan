@@ -50,7 +50,7 @@ namespace MealPlanner.Controllers
                 UserBusinessLayer userBusinessLayer = new UserBusinessLayer();
 
                 userBusinessLayer.SaveUser(user);
-                return RedirectToAction("Index", new { id = user.UserID });
+                return RedirectToAction("Index", new { id = user.UserId });
             }
 
             return View(user);
@@ -162,30 +162,6 @@ namespace MealPlanner.Controllers
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-        //right now delete funtion is not able to use since userID is the foreign key of physicalStats table
-
-        //[HttpPost]
-        //public ActionResult Delete(int id)
-        //{
-        //    //EmployeeBusinessLayer employeeBusinessLayer = new EmployeeBusinessLayer();
-        //    //employeeBusinessLayer.DeleteEmployee(Id);
-        //    UserBusinessLayer userBusinessLayer = new UserBusinessLayer();
-        //    userBusinessLayer.DeleteUser(id);
-
-        //    return RedirectToAction("Index");
-        //}
 
 
 
