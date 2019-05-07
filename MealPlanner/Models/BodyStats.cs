@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,25 +8,74 @@ namespace MealPlanner.Models
 {
     public class BodyStats
     {
-        [JsonProperty("id")]
-        public int Id { get; set; }
-        [JsonProperty("loseOrMaintainWeight")]
-        public bool LoseOrMaintainWeight { get; set; }
-        [JsonProperty("heightFeet")]
-        public int HeightFeet { get; set; }
-        [JsonProperty("heightInches")]
-        public int HeightInches { get; set; }
-        [JsonProperty("weight")]
-        public int Weight { get; set; }
-        [JsonProperty("activityLevel")]
-        public string ActivityLevel { get; set; }
-        [JsonProperty("weightGoal")]
-        public int WeightGoal { get; set; }
-        [JsonProperty("daysToGoal")]
-        public int DaysToGoal { get; set; }
-        [JsonProperty("age")]
+
+        
+        public int BodyStatId { get; set; }
+
+        [Display(Name = "UserId")]
+        public int UserId { get; set; }
+
+        [Required]
+        [Display(Name = "HeightFeet")]
+        public double HeightFeet { get; set; }
+
+        [Required]
+        [Display(Name = "HeightInches")]
+        public double HeightInches { get; set; }
+
+
+        [Required]
+        [Display(Name = "Weight")]
+        public double Weight { get; set; }
+
+        
+
+        [Required]
+        [Display(Name = "TargetWeight")]
+        public double TargetWeight { get; set; }
+
+
+        
+        [Display(Name = "TargetCalories")]
+        public double TargetCalories { get; set; }
+
+        [Required]
+        [Display(Name = "TargetDays")]
+        public int TargetDays { get; set; }
+
+
+
+        [Display(Name = "BMI")]
+        public double BMI { get; set; }
+
+
+
+        [Required]
+        [Display(Name = "ActivityLevel")]
+        public MealPlanner.Models.Enums.ActivityLevel ActivityLevel { get; set; }
+       // public string ActivityLevel { get; set; }
+
+
+
+        [Required]
+        [Display(Name = "Age")]
         public int Age { get; set; }
-        [JsonProperty("gender")]
-        public bool Gender { get; set; }
+
+        [Required]
+        [Display(Name = "Gender")]
+        public MealPlanner.Models.Enums.Gender Gender  { get; set; }
+      //  public bool Gender { get; set; }
+
+        [Required]
+        [Display(Name = "AddDate")]
+        public DateTime AddDate { get; set; }
+
+        ////[Required]
+        //[Display(Name = "LoseOrMaintainWeight")]
+        public bool LoseOrMaintainWeight { get; set; }
+
+
+
+
     }
 }

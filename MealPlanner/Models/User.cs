@@ -1,15 +1,30 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace MealPlanner.Models
 {
-    [Serializable]
     public class User
     {
+        //public int UserID { get; set; }
+        //[Required]
+        //public string FirstName { get; set; }
+        //[Required]
+        //public string LastName { get; set; }
+
+        //[Required]
+        //[EmailAddress]
+        //public string Email { get; set; }
+
+        //[Required]
+        //[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        //[DataType(DataType.Password)]
+       // public string Password { get; set; }
+
+
         [JsonProperty("fname")]
         public string FirstName { get; set; }
         [JsonProperty("lname")]
@@ -23,7 +38,10 @@ namespace MealPlanner.Models
         [JsonProperty("confirmPassword")]
         public string ConfirmPassword { get; set; }
         [JsonProperty("bodyStats")]
-        public BodyStats BodyStats { get; set; }
-      
+        public BodyStats SingleBodyStats { get; set; }
+
+        public List<BodyStats> BodyStats { get; set; }
+
+
     }
 }
