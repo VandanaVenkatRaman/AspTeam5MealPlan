@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Demo Meal Plan | Meal Planner</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/popper.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/meal-planner.js"></script>
+    <style>
+        .header-image {
+            position: relative;
+            height: auto;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        img {
+            position: relative;
+            width: 100%;
+            max-height: 200px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <h1>Demo Meal Plan - Using 2000 Calories</h1>
+
+    @{
+        var demo = ViewBag.Message;
+
+        foreach (var m in demo["meals"])
+        {
+            <h2>Title: @m["title"]</h2>
+            <h3>Ready In (Minutes): @m["readyInMinutes"]</h3>
+            <h3>Serves: @m["servings"]</h3>
+            <h4>ID: @m["id"]</h4>
+            <br />
+        }
+    }
+</body>
+</html>

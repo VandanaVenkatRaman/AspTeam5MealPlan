@@ -1,9 +1,14 @@
 ﻿using MealPlanner.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using unirest_net.http;
 
 namespace MealPlanner.Controllers
 {
@@ -14,41 +19,42 @@ namespace MealPlanner.Controllers
             return View("Home");
         }
 
-
-        [HttpGet]
-        public ActionResult Register()
+        public ActionResult About()
         {
+            ViewBag.Message = "Your application description page.";
+
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult Register(RegisterPageModel registerPageModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
 
-
-        //        UserBusinessLayer userBusinessLayer = new UserBusinessLayer();
-        //        userBusinessLayer.AddUser(registerPageModel.User);
-        //        Session["id"]= userBusinessLayer.GetUserId(registerPageModel);
-                
-                
-        //        registerPageModel.BodyStats.UserId =(int) Session["id"];
-        //        BodyStatsBusinessLayer bodyStatsBusinessLayer = new BodyStatsBusinessLayer();
-        //        bodyStatsBusinessLayer.AddBodyStats(registerPageModel.BodyStats);
-
-
-
-        //    }
-
-        //    return View();
-        //}
-
+            return View();
+        }
+        public ActionResult Register()
+        {
+            return View("Register");
+        }
         public ActionResult SignIn()
         {
             return View("SignIn");
         }
 
-  
+        [HttpGet]
+        public ActionResult DemoMealPlan()
+        {
+            //removed api-key
+            HttpResponse<string> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate?timeFrame=day&targetCalories=2000")
+                .header("X-RapidAPI-Host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
+                .header("X-RapidAPI-Key", "")
+                .asJson<string>();
+
+            var demo = JsonConvert.DeserializeObject(response.Body);
+
+            ViewBag.Message = demo;
+            return View("DemoMealPlan");
+
+        }
     }
 }

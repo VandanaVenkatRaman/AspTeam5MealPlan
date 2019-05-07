@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+
+<html>
+<head>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/popper.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/meal-planner.js"></script>
+    <title>Home | Register</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <label>First Name:</label>
+        <input type="text" placeholder="Enter First Name" id="fname" class="col-1" /><br />
+        <label>Last Name:</label>
+        <input type="text" placeholder="Enter Last Name" id="lname" class="col-1" /><br />
+        <label>Email Address:</label>
+        <input type="email" placeholder="Enter Email" id="email" class="col-1" /><br />
+        <label>Age:</label>
+        <input type="number" placeholder="Enter Age" id="age" class="col-1" /><br />
+        <label>Password:</label>
+        <input type="password" placeholder="Enter Password" id="password" class="col-1"/><br />
+        <label>Confirm Password:</label>
+        <input type="password" placeholder="Confirm Password" id="confirmpassword" class="col-1" /><br />
+        <label class="col-2">What do you want to do?</label>
+        <input type="radio" id="loseWeight" name="weight" value="0" class="col-sm-1" checked />Lose Weight
+        <input type="radio" id="maintainWeight" name="weight" value="1" class="col-sm-1" />Maintain Weight<br />
+        <br />
+        <label class="col-2">Gender:</label>
+        <input type="radio" id="genderMale" name="gender" value="0" class="col-sm-1" />Male
+        <input type="radio" id="genderFemale" name="gender" value="1" class="col-sm-1" />Female<br />
+        <br />
+        <label class="col-2">Height:</label>
+        <input type="number" id="heightFeet" class="col-1" />feet
+        <input type="number" id="heightInches" class="col-1" />inches<br />
+        <br />
+        <label class="col-2">Weight:</label>
+        <input type="number" id="weight" class="col-3" />Lbs<br />
+        <br />
+        <label class="col-2">Activity Level:</label>
+        <select id="activityLevel" class="col-3">
+            <option val="1">Sedentary</option>
+            <option val="2">Lightly Active</option>
+            <option val="3" selected>Moderately Active</option>
+            <option val="4">Very Active</option>
+            <option val="5">Extremely Active</option>
+        </select>
+        <br />
+        <div id="lossGoals">
+            <label class="col-2">Weight Goal:</label>
+            <input type="text" id="weightGoal" class="col-3" /><br />
+            <br />
+            <label class="col-2">Days to reach weight goal:</label>
+            <input type="number" id="daysToGoal" class="col-3" /><br />
+        </div>
+        <div>
+            <button id="registerButton">Register</button>
+        </div>
+    </div>
+
+</body>
+</html>
