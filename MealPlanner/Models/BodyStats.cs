@@ -72,7 +72,7 @@ namespace MealPlanner.Models
 
         ////[Required]
         //[Display(Name = "LoseOrMaintainWeight")]
-        //public bool LoseOrMaintainWeight { get; set; }
+        public bool LoseOrMaintainWeight { get; set; }
 
 
 

@@ -66,29 +66,7 @@ namespace MealPlanner.Models
 
 
         }
-        //public static Dictionary<string, double> ActivityEnum = new Dictionary<string, double>()
-        //{
-        //    {"Sedentary", 1.2},
-        //    {"Lightly Active", 1.375},
-        //    {"Moderately Active", 1.55},
-        //    {"Very Active", 1.725},
-        //    {"Extremely Active", 1.9}
-        //};
-        //private static float GetTargetCalories(User u)
-        //{
-        //    var height = (u.SingleBodyStats.HeightFeet * 12) + u.SingleBodyStats.HeightInches;
-        //    var weight = u.SingleBodyStats.Weight;
-        //    var gender = u.SingleBodyStats.Gender;
-        //    var age = u.SingleBodyStats.Age;
-
-        //    //if gender == true, male calculation : false, female calculation
-        //    var bmr = gender ? 66 + (6.3F * weight) + (12.9F * height) - (6.8 * age) : 655 + (4.3F * weight) + (4.7F * height) - (4.7 * age);
-
-        //    return (float)((u.SingleBodyStats.LoseOrMaintainWeight)
-        //        ? (bmr * ActivityEnum[u.SingleBodyStats.ActivityLevel])
-        //        : (bmr * ActivityEnum[u.SingleBodyStats.ActivityLevel] - 500));
-        //}
-        
+      
         public int GetBmrmult(Enums.ActivityLevel ExerciseLevel)
         {
 

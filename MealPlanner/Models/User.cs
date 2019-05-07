@@ -25,5 +25,7 @@ namespace MealPlanner.Models
 
         public List<BodyStats> BodyStats { get; set; }
         public BodyStats SingleBodyStats { get; set; }
+
+
     }
 }
