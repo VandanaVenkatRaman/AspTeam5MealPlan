@@ -73,6 +73,7 @@ namespace MealPlanner.Models
                 using (SqlCommand com = new SqlCommand("dbo.AddUserBodyStats", con))
                 {
                     double weight = convertWeight(u.BodyStats.Weight);
+                  
                     double height = convertHeight(u.BodyStats.HeightFeet,u.BodyStats.HeightInches );
                     double BMI = BMICalculation(weight, height);
                     
@@ -81,10 +82,10 @@ namespace MealPlanner.Models
                     com.Parameters.AddWithValue("UserId", u.UserId);
                     com.Parameters.AddWithValue("Height", (float)height);
                     com.Parameters.AddWithValue("Weight", (float)weight);
-                    com.Parameters.AddWithValue("TargetWeight", (float)u.BodyStats.WeightGoal);
+                    com.Parameters.AddWithValue("TargetWeight", (float)u.BodyStats.TargetWeight);
                     //TODO: Fetch targetCalories from API
                     com.Parameters.AddWithValue("TargetCalories", GetCalories(u));
-                    com.Parameters.AddWithValue("TargetDays", (float)u.BodyStats.DaysToGoal);
+                    com.Parameters.AddWithValue("TargetDays", (float)u.BodyStats.TargetDays);
                     com.Parameters.AddWithValue("BMI", (float)BMI);
                     com.Parameters.AddWithValue("ActivityLevel", u.BodyStats.ActivityLevel);
                     com.Parameters.AddWithValue("Age", u.BodyStats.Age);
@@ -94,7 +95,7 @@ namespace MealPlanner.Models
                         if (reader.HasRows && reader.Read())
                         {
                             int bodyStatId = reader.GetInt32(0);
-                            u.BodyStats.Id = bodyStatId;
+                            u.BodyStats.BodyStatId = bodyStatId;
                             return true;
                         }
                     }
@@ -119,13 +120,13 @@ namespace MealPlanner.Models
                 }
             }
         }
-        public static double convertWeight(int pounds)
+        public static double convertWeight(double pounds)
         {
             double kg;
             kg = pounds * 0.45;
             return kg;
         }
-        public static double convertHeight(int feets, int inches)
+        public static double convertHeight(double   feets, double inches)
         {
             double cm;
             cm = ((feets * 12) + inches) * 2.5;

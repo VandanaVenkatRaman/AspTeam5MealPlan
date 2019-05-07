@@ -34,8 +34,8 @@ namespace MealPlanner.Controllers
                     {
                         ActivityLevel = (Models.Enums.ActivityLevel)Enum.Parse(typeof(Models.Enums.ActivityLevel), Request["activityLevel"]),
 
-                        DaysToGoal = daysToGoal,
-                        WeightGoal = weightGoal,
+                        TargetDays = daysToGoal,
+                        TargetWeight = weightGoal,
                         HeightFeet = heightFeet,
                         HeightInches = heightInches,
                         Weight = weight,
