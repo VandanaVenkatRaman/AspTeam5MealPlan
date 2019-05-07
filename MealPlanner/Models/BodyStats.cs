@@ -24,5 +24,9 @@ namespace MealPlanner.Models
         public int WeightGoal { get; set; }
         [JsonProperty("daysToGoal")]
         public int DaysToGoal { get; set; }
+        [JsonProperty("age")]
+        public int Age { get; set; }
+        [JsonProperty("gender")]
+        public bool Gender { get; set; }
     }
 }

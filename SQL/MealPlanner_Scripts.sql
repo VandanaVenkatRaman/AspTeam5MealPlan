@@ -92,6 +92,8 @@ CREATE TABLE [dbo].[BodyStats](
 	[TargetDays] [int] NOT NULL,
 	[BMI] [float] NOT NULL,
 	[ActivityLevel] [varchar](30) NOT NULL,
+	[Age] [int] NOT NULL,
+	[Gender] [bit] NULL,
  CONSTRAINT [PK_BodyStats_1] PRIMARY KEY CLUSTERED 
 (
 	[BodyStatId] ASC
@@ -138,9 +140,7 @@ CREATE TABLE [dbo].[User](
 	[UserID] [int] IDENTITY(1,1) NOT NULL,
 	[FirstName] [nvarchar](50) NOT NULL,
 	[LastName] [nvarchar](50) NOT NULL,
-	[Age] [int] NOT NULL,
-	[Gender] [bit] NULL,
-	[Email] [nvarchar](50) NOT NULL,
+    [Email] [nvarchar](50) NOT NULL,
 	[Password] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
 (
@@ -161,8 +161,6 @@ GO
 CREATE PROCEDURE [dbo].[AddNewUser]
 @FirstName NVARCHAR(50),
 @LastName NVARCHAR(50),
-@Age INT,
-@Gender BIT,
 @Email NVARCHAR(50),
 @Password NVARCHAR(50)
 AS
@@ -173,8 +171,6 @@ VALUES
 (
  @FirstName,
  @LastName,
- @Age,
- @Gender,
  @Email,
  @Password
 )
@@ -197,7 +193,9 @@ CREATE PROCEDURE [dbo].[AddUserBodyStats]
 @TargetCalories FLOAT,
 @TargetDays INT,
 @BMI FLOAT,
-@ActivityLevel VARCHAR(30)
+@ActivityLevel VARCHAR(30),
+@Age INT,
+@Gender BIT
 AS
 BEGIN
 INSERT INTO dbo.[BodyStats]
@@ -211,7 +209,9 @@ VALUES
 @TargetCalories,
 @TargetDays,
 @BMI,
-@ActivityLevel
+@ActivityLevel,
+@Age,
+@Gender
 )
 
 END
