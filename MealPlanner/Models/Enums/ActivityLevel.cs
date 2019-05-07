@@ -8,10 +8,10 @@ namespace MealPlanner.Models.Enums
 
     public enum ActivityLevel
     {
-        sedentary,
-        lightlyActive,
-        moderatelyActive,
-        veryActive,
-        extraActive
+        Sedentary,
+        LightlyActive,
+        ModeratelyActive,
+        VeryActive,
+        ExtraActive
     }
 }

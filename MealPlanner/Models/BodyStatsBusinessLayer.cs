@@ -55,12 +55,15 @@ namespace MealPlanner.Models
                           body.TargetCalories = Convert.ToDouble(rdr["TargetCalories"]);
                         body.TargetDays = Convert.ToInt32(rdr["TargetDays"]);
                         body.BMI = Convert.ToDouble(rdr["BMI"]);
-                   
-                        body.ActivityLevel=(Enums.ActivityLevel)Enum.Parse(typeof(Enums.ActivityLevel), rdr["ActivityLevel"].ToString());
 
-                        body.Age = Convert.ToInt32(rdr["Age"]);                  
-                        body.Gender = (Enums.Gender)Enum.Parse(typeof(Enums.Gender), rdr["Gender"].ToString());
-                        body.AddDate = Convert.ToDateTime(rdr["AddDate"]);
+                    body.ActivityLevel=(Enums.ActivityLevel)Enum.Parse(typeof(Enums.ActivityLevel), rdr["ActivityLevel"].ToString());
+                   // body.ActivityLevel = rdr["ActivityLevel"].ToString();
+                     
+
+                        body.Age = Convert.ToInt32(rdr["Age"]);
+                    body.Gender = (Enums.Gender)Enum.Parse(typeof(Enums.Gender), rdr["Gender"].ToString());
+                   // body.Gender = (bool)(rdr["Gender"]);
+                    body.AddDate = Convert.ToDateTime(rdr["AddDate"]);
                     
 
 
@@ -102,7 +105,7 @@ namespace MealPlanner.Models
 
                 SqlParameter paramTargetWeight = new SqlParameter();
                 paramTargetWeight.ParameterName = "@TargetWeight";
-                double weightTarget = physicalCalculation.ConvertWeight(bodyStats.Weight);
+                double weightTarget = physicalCalculation.ConvertWeight(bodyStats.TargetWeight);
                 paramTargetWeight.Value = weightTarget;
                 cmd.Parameters.Add(paramTargetWeight);
 
@@ -133,8 +136,9 @@ namespace MealPlanner.Models
 
                 SqlParameter paramTargetCalories = new SqlParameter();
                 paramTargetCalories.ParameterName = "@TargetCalories";
-                paramTargetCalories.Value = physicalCalculation.GetCalories(height, weightTarget, bodyStats.Age, bodyStats.Gender, bodyStats.ActivityLevel);
-                cmd.Parameters.Add(paramTargetCalories);
+                 paramTargetCalories.Value = physicalCalculation.GetCalories(height, weightTarget, bodyStats.Age, bodyStats.Gender, bodyStats.ActivityLevel);
+             
+                 cmd.Parameters.Add(paramTargetCalories);
 
 
 

@@ -53,6 +53,7 @@ namespace MealPlanner.Models
         [Required]
         [Display(Name = "ActivityLevel")]
         public MealPlanner.Models.Enums.ActivityLevel ActivityLevel { get; set; }
+       // public string ActivityLevel { get; set; }
 
 
 
@@ -63,10 +64,15 @@ namespace MealPlanner.Models
         [Required]
         [Display(Name = "Gender")]
         public MealPlanner.Models.Enums.Gender Gender  { get; set; }
+      //  public bool Gender { get; set; }
 
         [Required]
         [Display(Name = "AddDate")]
         public DateTime AddDate { get; set; }
+
+        ////[Required]
+        //[Display(Name = "LoseOrMaintainWeight")]
+        //public bool LoseOrMaintainWeight { get; set; }
 
 
 
