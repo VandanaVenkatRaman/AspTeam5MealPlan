@@ -32,14 +32,17 @@ namespace MealPlanner.Controllers
                     ConfirmPassword = Request["confirmPassword"],
                     BodyStats = new BodyStats
                     {
-                        ActivityLevel = Request["activityLevel"],
+                        ActivityLevel = (Models.Enums.ActivityLevel)Enum.Parse(typeof(Models.Enums.ActivityLevel), Request["activityLevel"]),
+
                         DaysToGoal = daysToGoal,
                         WeightGoal = weightGoal,
                         HeightFeet = heightFeet,
                         HeightInches = heightInches,
                         Weight = weight,
                         Age = age,
-                        Gender = Convert.ToBoolean(Convert.ToInt32(Request["gender"])),
+                        // Gender = Convert.ToBoolean(Convert.ToInt32(Request["gender"])),
+                        Gender = (Models.Enums.Gender)Enum.Parse(typeof(Models.Enums.Gender), Request["gender"]),
+                
                         LoseOrMaintainWeight = Convert.ToBoolean(Convert.ToInt32(Request["loseOrMaintainWeight"]))
                     }
                 };
