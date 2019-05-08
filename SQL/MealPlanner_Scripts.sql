@@ -216,10 +216,27 @@ VALUES
 
 END
 
-
-
 GO
 USE [master]
 GO
 ALTER DATABASE [MealPlanner] SET  READ_WRITE 
 GO
+
+USE [MealPlanner]
+GO
+/****** Object:  StoredProcedure [dbo].[ValidateUser]    Script Date: 5/8/2019 7:26:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[ValidateUser]
+@InputEmail NVARCHAR(50),
+@InputPassword NVARCHAR(50)
+AS
+BEGIN
+SELECT * FROM dbo.[User] WHERE 
+Email = @InputEmail
+AND Password = @InputPassword
+
+END
