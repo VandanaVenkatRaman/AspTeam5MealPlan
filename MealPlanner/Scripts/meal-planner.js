@@ -75,7 +75,8 @@
                     }
                     if (response.Status === 200) {
                     
-                        alert("RegistrationSuccessful");
+                        window.location = "/Home/SignIn";
+
                 }
                 else {
                         alert("Registration Failed. Response is " + response.Status);
