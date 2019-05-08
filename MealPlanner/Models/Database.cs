@@ -72,9 +72,9 @@ namespace MealPlanner.Models
                 con.Open();
                 using (SqlCommand com = new SqlCommand("dbo.AddUserBodyStats", con))
                 {
-                    double weight = convertWeight(u.BodyStats.Weight);
+                    double weight = convertWeight(u.SingleBodyStats.Weight);
                   
-                    double height = convertHeight(u.BodyStats.HeightFeet,u.BodyStats.HeightInches );
+                    double height = convertHeight(u.SingleBodyStats.HeightFeet,u.SingleBodyStats.HeightInches );
                     double BMI = BMICalculation(weight, height);
                     
 
@@ -82,20 +82,20 @@ namespace MealPlanner.Models
                     com.Parameters.AddWithValue("UserId", u.UserId);
                     com.Parameters.AddWithValue("Height", (float)height);
                     com.Parameters.AddWithValue("Weight", (float)weight);
-                    com.Parameters.AddWithValue("TargetWeight", (float)u.BodyStats.TargetWeight);
+                    com.Parameters.AddWithValue("TargetWeight", (float)u.SingleBodyStats.TargetWeight);
                     //TODO: Fetch targetCalories from API
                     com.Parameters.AddWithValue("TargetCalories", GetCalories(u));
-                    com.Parameters.AddWithValue("TargetDays", (float)u.BodyStats.TargetDays);
+                    com.Parameters.AddWithValue("TargetDays", (float)u.SingleBodyStats.TargetDays);
                     com.Parameters.AddWithValue("BMI", (float)BMI);
-                    com.Parameters.AddWithValue("ActivityLevel", u.BodyStats.ActivityLevel);
-                    com.Parameters.AddWithValue("Age", u.BodyStats.Age);
-                    com.Parameters.AddWithValue("Gender", u.BodyStats.Gender);
+                    com.Parameters.AddWithValue("ActivityLevel", u.SingleBodyStats.ActivityLevel);
+                    com.Parameters.AddWithValue("Age", u.SingleBodyStats.Age);
+                    com.Parameters.AddWithValue("Gender", u.SingleBodyStats.Gender);
                     using (SqlDataReader reader = com.ExecuteReader())
                     {
                         if (reader.HasRows && reader.Read())
                         {
                             int bodyStatId = reader.GetInt32(0);
-                            u.BodyStats.BodyStatId = bodyStatId;
+                            u.SingleBodyStats.BodyStatId = bodyStatId;
                             return true;
                         }
                     }
@@ -147,12 +147,12 @@ namespace MealPlanner.Models
 
             int bmrmult = 0;
 
-            if ((int)u.BodyStats.ActivityLevel != -1)
+            if ((int)u.SingleBodyStats.ActivityLevel != -1)
             {
                 //string exercise;
 
                 //exercise = ExerciseLevel.ToString();
-                switch (u.BodyStats.ActivityLevel)
+                switch (u.SingleBodyStats.ActivityLevel)
 
                 {
                     case Enums.ActivityLevel.Sedentary:
@@ -184,26 +184,26 @@ namespace MealPlanner.Models
         {
 
             double BMR = 0;
-            var height = (u.BodyStats.HeightFeet * 12) + u.BodyStats.HeightInches;
-              var weight = u.BodyStats.Weight;
+            var height = (u.SingleBodyStats.HeightFeet * 12) + u.SingleBodyStats.HeightInches;
+              var weight = u.SingleBodyStats.Weight;
 
             int Calories;
             //select gender
             //if (genderList.SelectedIndex != -1)
-            if ((int)u.BodyStats.Gender != -1)
+            if ((int)u.SingleBodyStats.Gender != -1)
 
             {
                 //string gender = g.ToString();
-                switch (u.BodyStats.Gender)
+                switch (u.SingleBodyStats.Gender)
                 {
                     case Enums.Gender.Male:
                         //perform calculation
-                        BMR = (weight * 10 + height * 6.25 - u.BodyStats.Age * 5 - 5);
+                        BMR = (weight * 10 + height * 6.25 - u.SingleBodyStats.Age * 5 - 5);
 
                         break;
 
                     case Enums.Gender.Female:
-                        BMR = weight * 10 + height * 6.25 - u.BodyStats.Age * 5 - 161;
+                        BMR = weight * 10 + height * 6.25 - u.SingleBodyStats.Age * 5 - 161;
                         break;
 
                 }

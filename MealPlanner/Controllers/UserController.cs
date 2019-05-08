@@ -30,7 +30,7 @@ namespace MealPlanner.Controllers
                     Email = Request["email"],
                     Password = Request["password"],
                     ConfirmPassword = Request["confirmPassword"],
-                    BodyStats = new BodyStats
+                    SingleBodyStats = new BodyStats
                     {
                         ActivityLevel = (Models.Enums.ActivityLevel)Enum.Parse(typeof(Models.Enums.ActivityLevel), Request["activityLevel"]),
 
