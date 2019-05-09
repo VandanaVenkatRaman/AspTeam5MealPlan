@@ -5,11 +5,11 @@
 }
 <div style="font-family:Arial">
    
-        <h2>BodyStats</h2>
+        <h2>My Body Stat History</h2>
 
-        <p>
-       
-            @Html.ActionLink("Add Your Newest Body Status", "AddBodyStatus", new { id = ViewBag.data})
+        <p class="col-5">
+            
+            @Html.ActionLink("Add Your Newest Body Status", "AddBodyStatus", new { id = ViewBag.data}, new { @class = "btn btn-primary btn-block"})
         </p>
 
         <table class="table">
@@ -17,35 +17,33 @@
 
 
                 <th>
-                    @Html.DisplayNameFor(model => model.HeightFeet)
+                    Height (Ft)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.HeightInches)
+                    Height (In)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Weight)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TargetWeight)
+                   Target Weight
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TargetCalories)
+                   Target Calories
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TargetDays)
+                   Target Days
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.BMI)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ActivityLevel)
+                    Activity Level
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Age)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Gender)
-                </th>
+
                 <th>
                     @Html.DisplayNameFor(model => model.AddDate)
                 </th>
@@ -89,9 +87,6 @@
                     @Html.DisplayFor(modelItem => item.Age)
                 </td>
 
-                <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-                </td>
 
                 <td>
                     @Html.DisplayFor(modelItem => item.AddDate)

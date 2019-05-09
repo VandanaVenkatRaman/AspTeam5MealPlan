@@ -46,6 +46,7 @@ namespace MealPlanner.Models
 
 
         [Display(Name = "BMI")]
+        [DisplayFormat(DataFormatString= "{0:n2}")]
         public double BMI { get; set; }
 
 

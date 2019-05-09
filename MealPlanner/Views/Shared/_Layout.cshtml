@@ -19,6 +19,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="~/Assets/css/Contact-Form-Clean.css">
     <link rel="stylesheet" href="~/Assets/css/Login-Form-Clean.css">
+    <style>
+        body {
+            background-color: #f1f7fc;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-secondary text-uppercase" id="mainNav">
@@ -29,17 +34,20 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="@Url.Action("/SignIn")">Sign In</a></li>
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="@Url.Action("/Index")">Home</a></li>
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="@Url.Action("/BodyStats")">Body History</a></li>
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="@Url.Action("/MealPlans")">My Meal Plans</a></li>
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="@Url.Action("/Account")">Profile</a></li>
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="@Url.Action("../")">Log Out</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    <div class="container" style="min-height: 120px;"></div>
 
-
-    <div class="content">
+    <div class="container">
         @RenderBody()
     </div>
-
     <footer class="footer text-center">
         <div class="container">
             <div class="row">

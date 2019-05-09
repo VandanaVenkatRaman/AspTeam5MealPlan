@@ -43,14 +43,7 @@ div.content {
 }
 
 /* Footer */
-.footer {
-    background-color: darkslategrey;
-    color: antiquewhite;
-    min-height: 200px;
-    margin-left: 200px;
-    margin-top: 50px;
-    padding: 1px 16px;
-}
+
 
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */

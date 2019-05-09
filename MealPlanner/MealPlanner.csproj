@@ -234,6 +234,8 @@
     <Content Include="Views\Dashboard\Edit.cshtml" />
     <Content Include="Views\Dashboard\EditBodyStats.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Dashboard\DailyPlan.cshtml" />
+    <Content Include="Views\Dashboard\Account.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

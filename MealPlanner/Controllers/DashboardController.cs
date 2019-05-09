@@ -29,15 +29,23 @@ namespace MealPlanner.Controllers
                 return RedirectToAction("DailyPlan");
             }
         }
-
+        
         public ActionResult DailyPlan()
         {
             return View(GetAllMealPlans().LastOrDefault());
         }
-
-        public ActionResult DailyPlan(int mealPlanId)
+       
+        public ActionResult HistoricalDailyPlan(int mealPlanId)
         {
             return View(LoadMealPlan(mealPlanId));
+        }
+
+        public ActionResult Account()
+        {
+            UserBusinessLayer userBusinessLayer = new UserBusinessLayer();
+            User user = userBusinessLayer.GetUser((int)Session["id"]);
+
+            return View(user);
         }
 
         // Edit user table info
