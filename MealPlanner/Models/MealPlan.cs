@@ -13,6 +13,7 @@ namespace MealPlanner.Models
     [Serializable]
     public class MealPlan
     {
+        public int MealPlanId { get; set; }
         [JsonProperty("meals")]
         public Meal[] Meals { get; set; }
         [JsonProperty("nutrients")]

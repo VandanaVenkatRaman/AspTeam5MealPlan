@@ -21,5 +21,23 @@ namespace MealPlanner.Models
         public string Image { get; set; }
         [JsonProperty("imageUrls")]
         public string[] ImageUrls { get; set; }
+
+        public static string StringMeal(Meal m)
+        {
+            return m.Id + "," + m.ReadyInMinutes + "," + m.Servings + "," + m.Title;
+        }
+
+        public static Meal ObjectMeal(string m)
+        {
+            List<string> temp = m.Split(',').ToList<string>();
+
+            return new Meal
+            {
+                Id = int.Parse(temp.ElementAt(0)),
+                ReadyInMinutes = int.Parse(temp.ElementAt(1)),
+                Servings = int.Parse(temp.ElementAt(2)),
+                Title = temp.ElementAt(3)
+            };
+        }
     }
 }
