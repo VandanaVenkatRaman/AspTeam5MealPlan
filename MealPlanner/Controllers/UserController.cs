@@ -83,6 +83,7 @@ namespace MealPlanner.Controllers
 
                 // HttpContext.Session["UserId"] = bodyStatsBusinessLayer.GetUserIdBasedEmail(userid, password);
                 Session["id"] = bodyStatsBusinessLayer.GetUserIdBasedEmail(userid, password);
+                Session["mp"] = false; 
                 // return Json(new { Status = (int)HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
                 return RedirectToAction("Index", "Dashboard");
 

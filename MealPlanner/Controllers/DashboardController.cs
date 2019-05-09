@@ -8,8 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using MealPlanner.Models;
 
-
-
 namespace MealPlanner.Controllers
 {
     public class DashboardController : Controller
@@ -18,10 +16,22 @@ namespace MealPlanner.Controllers
         //output user table info
         public ActionResult Index()
         {
-            UserBusinessLayer userBusinessLayer = new UserBusinessLayer();
-            User user = userBusinessLayer.GetUser((int)Session["id"]);
+            if (Session["mp"].Equals(false))
+            {
+                UserBusinessLayer userBusinessLayer = new UserBusinessLayer();
+                User user = userBusinessLayer.GetUser((int)Session["id"]);
 
-            return View(user);
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("DailyPlan");
+            }
+        }
+
+        public ActionResult DailyPlan()
+        {
+            return View(GetAllMealPlans().LastOrDefault());
         }
 
         // Edit user table info
@@ -247,8 +257,7 @@ namespace MealPlanner.Controllers
             return View(m);
         }
 
-        [Route("/Dashboard/HistoricalMealPlans")]
-        public ActionResult HistoricalMealPlans()
+        public List<MealPlan> GetAllMealPlans()
         {
             var history = new List<MealPlan>();
             string connectionString = ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString;
@@ -282,9 +291,13 @@ namespace MealPlanner.Controllers
 
                     history.Add(m);
                 }
+                return history;
             }
-
-            return View(history);
+        }
+               
+        [Route("/Dashboard/HistoricalMealPlans")]
+        public ActionResult HistoricalMealPlans() { 
+            return View(GetAllMealPlans());
         }
     }
 }
