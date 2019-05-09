@@ -6,64 +6,161 @@
 
 <html>
 <head>
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/popper.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/meal-planner.js"></script>
-    <title>Home | Register</title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @*<script src="~/Scripts/jquery-3.3.1.js"></script>
+        <script src="~/Scripts/popper.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/meal-planner.js"></script>
+        <title>Home | Register</title>
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>MealPlanner | Register</title>
+    <link rel="stylesheet" href="~/Assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/Assets/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="~/Assets/css/Login-Form-Clean.css">
+
+    <style>
+        body {
+            background-color: rgb(241,247,252);
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <label>First Name:</label>
-        <input type="text" placeholder="Enter First Name" id="fname" class="col-1" /><br />
-        <label>Last Name:</label>
-        <input type="text" placeholder="Enter Last Name" id="lname" class="col-1" /><br />
-        <label>Email Address:</label>
-        <input type="email" placeholder="Enter Email" id="email" class="col-1" /><br />
-        <label>Age:</label>
-        <input type="number" placeholder="Enter Age" id="age" class="col-1" /><br />
-        <label>Password:</label>
-        <input type="password" placeholder="Enter Password" id="password" class="col-1" /><br />
-        <label>Confirm Password:</label>
-        <input type="password" placeholder="Confirm Password" id="confirmpassword" class="col-1" /><br />
-        <label class="col-2">What do you want to do?</label>
-        <input type="radio" id="loseWeight" name="weight" value="0" class="col-sm-1" checked />Lose Weight
-        <input type="radio" id="maintainWeight" name="weight" value="1" class="col-sm-1" />Maintain Weight<br />
-        <br />
-        <label class="col-2">Gender:</label>
-        <input type="radio" id="genderMale" name="gender" value="0" class="col-sm-1" />Male
-        <input type="radio" id="genderFemale" name="gender" value="1" class="col-sm-1" />Female<br />
-        <br />
-        <label class="col-2">Height:</label>
-        <input type="number" id="heightFeet" class="col-1" />feet
-        <input type="number" id="heightInches" class="col-1" />inches<br />
-        <br />
-        <label class="col-2">Weight:</label>
-        <input type="number" id="weight" class="col-3" />Lbs<br />
-        <br />
-        <label class="col-2">Activity Level:</label>
-        <select id="activityLevel" class="col-3">
-            <option val="1">Sedentary</option>
-            <option val="2">LightlyActive</option>
-            <option val="3" selected> ModeratelyActive</option>
-            <option val="4">VeryActive</option>
-            <option val="5">ExtraActive</option>
-        </select>
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-secondary text-uppercase" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="@Url.Action("")">MealPlanner</a><button data-toggle="collapse" data-target="#navbarResponsive"
+                                                                                     class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded"
+                                                                                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item mx-0 mx-lg-1" role="presentation">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="@Url.Action("/SignIn")">Sign In</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="min-height: 120px;"></div>
+    <div class="login-clean">
+        <form method="post" style="max-width: 600px;">
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration"><i class="icon ion-ios-navigate" style="color: rgb(24,188,156);"></i></div>
+            <div class="form-group">
+                <input class="form-control" id="fname" type="email" name="fname" placeholder="First Name">
+                <input class="form-control" type="email" name="lname" placeholder="Last Name">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="lname" type="email" name="email"
+                       placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="email" type="email" name="age" placeholder="Age">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="password" type="password" name="password"
+                       placeholder="Password">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="confirmpassword" type="password"
+                       name="confirmpassword" placeholder="Confirm Password">
+            </div>
+            <h6 class="text-center" style="font-family: Lato, sans-serif;">Fitness Goal</h6>
+            <div class="form-group text-center">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button class="btn btn-success" id="loseWeight"
+                            type="button">
+                        Lose Weight
+                    </button><button class="btn btn-secondary" id="maintainWeight"
+                                     type="button">
+                        Maintain
+                    </button><button class="btn btn-secondary" id="gainWeight"
+                                     type="button">
+                        Gain Weight
+                    </button>
+                </div>
+            </div>
+            <h6 class="text-center" style="font-family: Lato, sans-serif;">Gender</h6>
+            <div class="form-group text-center">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button id="genderMale" class="btn btn-success" type="button">Male</button>
+                    <button id="genderFemale" class="btn btn-secondary" type="button">Female</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="heightFeet" type="number" min="0" max="8" name="heightFeet"
+                       placeholder="Height (Feet)">
+                <input class="form-control" id="heightInches" type="number" min="0" max="11" name="heightInches"
+                       placeholder="Height (in)">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="weight" type="number" min="50" max="999" name="weight"
+                       placeholder="Weight (lbs)">
+            </div>
+            <div class="form-group text-center">
+                <label>Activity Level</label>
+                <select id="activityLevel" class="col-5">
+                    <option val="1">Sedentary</option>
+                    <option val="2">Lightly Active</option>
+                    <option val="3" selected> Moderately Active</option>
+                    <option val="4">Very Active</option>
+                    <option val="5">Extra Active</option>
+                </select>
 
-     
-        <br />
-        <div id="lossGoals">
-            <label class="col-2">Weight Goal:</label>
-            <input type="text" id="weightGoal" class="col-3" /><br />
-            <br />
-            <label class="col-2">Days to reach weight goal:</label>
-            <input type="number" id="daysToGoal" class="col-3" /><br />
-        </div>
-        <div>
-            <button id="registerButton">Register</button>
-        </div>
+            </div>
+            <div id="lossGoals" class="form-group text-center">
+                <input class="form-control" id="weightGoal" type="number" min="50" max="999" name="weightGoal" placeholder="Weight Goal">
+                <input class="form-control" id="daysToGoal"  type="number" min="1" max="999" name="daysToGoal"
+                       placeholder="Days to reach Weight Goal">
+
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit"
+                        id="registerButton" style="background-color: rgb(24,188,156);">
+                    Sign Up
+                </button>
+            </div>
+            <hr><a class="forgot" href="@Url.Action("/SignIn")">Existing User? Login!</a>
+        </form>
     </div>
-
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-5 mb-lg-0"></div>
+                <div class="col-md-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase">Follow US!</h4>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a class="btn btn-outline-light btn-social text-center rounded-circle" role="button"
+                               href="#"><i class="fa fa-facebook fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn btn-outline-light btn-social text-center rounded-circle" role="button"
+                               href="#"><i class="fa fa-instagram fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn btn-outline-light btn-social text-center rounded-circle" role="button"
+                               href="#"><i class="fa fa-twitter fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item"></li>
+                    </ul>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright py-4 text-center text-white">
+        <div class="container"><small>Copyright © MealPlanner 2019</small></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="~/Assets/js/freelancer.js"></script>
 </body>
 </html>
