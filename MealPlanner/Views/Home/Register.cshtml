@@ -9,7 +9,7 @@
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/popper.js"></script>
 
-    <script src="~/Scripts/meal-planner.js"></script>
+    @*<script src="~/Scripts/meal-planner.js"></script>*@
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="~/Assets/css/Contact-Form-Clean.css">
     <link rel="stylesheet" href="~/Assets/css/Login-Form-Clean.css">
-    <script src="~/Scripts/meal-planner.js"></script>
+    @*<script src="~/Scripts/meal-planner.js"></script>*@
 
     <style>
 
@@ -54,7 +54,7 @@
             <div class="illustration"><i class="icon ion-ios-navigate" style="color: rgb(24,188,156);"></i></div>
             <div class="form-group">
                 <input class="form-control" required id="fname" type="text" name="fname" placeholder="First Name">
-                <input class="form-control" required type="text" name="lname" placeholder="Last Name">
+                <input class="form-control" required id="lname" type="text" name="lname" placeholder="Last Name">
             </div>
             <div class="form-group">
                 <input class="form-control" required id="email" type="email" name="email"
@@ -109,10 +109,11 @@
 
             </div>
             <div class="form-group">
-                <button class="btn btn-primary btn-block"
-                        id="registerButton" style="background-color: rgb(24,188,156);">
-                    Sign Up
-                </button>
+                <input id ="registerButton" type="button"
+                       value="Sign Up"
+                       class="btn btn-primary btn-block"
+                       style="background-color: rgb(24,188,156);"
+                       onclick="location.href='@Url.Action("Register","User")'" />
             </div>
             <hr><a class="forgot" href="@Url.Action("/SignIn")">Existing User? Login!</a>
         </form>

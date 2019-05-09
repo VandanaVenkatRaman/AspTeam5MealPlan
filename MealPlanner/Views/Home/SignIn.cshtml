@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="~/Assets/css/Contact-Form-Clean.css">
     <link rel="stylesheet" href="~/Assets/css/Login-Form-Clean.css">
-    <script src="~/Scripts/meal-planner.js"></script>
+    @*<script src="~/Scripts/meal-planner.js"></script>*@
     <style>
 
         body {
@@ -48,8 +48,13 @@
             <div class="form-group"><input class="form-control" id="email" type="email" name="email" placeholder="Email"></div>
             <div class="form-group"><input class="form-control" id="password" type="password" name="password" placeholder="Password"></div>
             <div class="form-group">
-                <button id="SignInButton" class="btn btn-primary btn-block"  style="background-color: rgb(24,188,156);">Log In</button>
+                <input id="SignInButton" type="button"
+                       value="Sign In"
+                       class="btn btn-primary btn-block"
+                       style="background-color: rgb(24,188,156);"
+                       onclick="location.href='@Url.Action("SignIn","User")'" />
             </div>
+
             <a class="forgot" href="#">Forgot your email or password?</a>
             <hr><a class="forgot" href="@Url.Action("/Register")">New User? Create an account!</a>
         </form>
@@ -73,8 +78,7 @@
     </footer>
     <div class="copyright py-4 text-center text-white">
         <div class="container"><small>Copyright © MealPlanner 2019</small></div>
-    <div>
-        <button id="SignInButton">SignIn</button>
+    
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>

@@ -37,11 +37,11 @@ namespace MealPlanner.Models
                     while (rdr.Read())
                     {
                   
-                       user.UserId = id;
-                         user.FirstName = rdr["FirstName"].ToString();
-                        user.LastName = rdr["LastName"].ToString();
-                        user.Email = rdr["Email"].ToString();
-                        user.Password = rdr["Password"].ToString();
+                       user.userid = id;
+                         user.fname = rdr["FirstName"].ToString();
+                        user.lname = rdr["LastName"].ToString();
+                        user.email = rdr["Email"].ToString();
+                        user.password = rdr["Password"].ToString();
 
 
                     }
@@ -66,22 +66,22 @@ namespace MealPlanner.Models
 
                 SqlParameter paramFirstName = new SqlParameter();
                 paramFirstName.ParameterName = "@FirstName";
-                paramFirstName.Value = user.FirstName;
+                paramFirstName.Value = user.fname;
                 cmd.Parameters.Add(paramFirstName);
 
                 SqlParameter paramLastName = new SqlParameter();
                 paramLastName.ParameterName = "@LastName";
-                paramLastName.Value = user.LastName;
+                paramLastName.Value = user.lname;
                 cmd.Parameters.Add(paramLastName);
 
                 SqlParameter paramEmail = new SqlParameter();
                 paramEmail.ParameterName = "@Email";
-                paramEmail.Value = user.Email;
+                paramEmail.Value = user.email;
                 cmd.Parameters.Add(paramEmail);
 
                 SqlParameter paramPassword = new SqlParameter();
                 paramPassword.ParameterName = "@Password";
-                paramPassword.Value = user.Password;
+                paramPassword.Value = user.password;
                 cmd.Parameters.Add(paramPassword);
 
 
@@ -110,27 +110,27 @@ namespace MealPlanner.Models
 
                 SqlParameter paramUserID = new SqlParameter();
                 paramUserID.ParameterName = "@UserID";
-                paramUserID.Value = user.UserId;
+                paramUserID.Value = user.userid;
                 cmd.Parameters.Add(paramUserID);
 
                 SqlParameter paramFirstName = new SqlParameter();
                 paramFirstName.ParameterName = "@FirstName";
-                paramFirstName.Value = user.FirstName;
+                paramFirstName.Value = user.fname;
                 cmd.Parameters.Add(paramFirstName);
 
                 SqlParameter paramLastName = new SqlParameter();
                 paramLastName.ParameterName = "@LastName";
-                paramLastName.Value = user.LastName;
+                paramLastName.Value = user.lname;
                 cmd.Parameters.Add(paramLastName);
 
                 SqlParameter paramEmail = new SqlParameter();
                 paramEmail.ParameterName = "@Email";
-                paramEmail.Value = user.Email;
+                paramEmail.Value = user.email;
                 cmd.Parameters.Add(paramEmail);
 
                 SqlParameter paramPassword = new SqlParameter();
                 paramPassword.ParameterName = "@Password";
-                paramPassword.Value = user.Password;
+                paramPassword.Value = user.password;
                 cmd.Parameters.Add(paramPassword);
 
 
@@ -178,12 +178,12 @@ namespace MealPlanner.Models
 
                 SqlParameter paramFirstName = new SqlParameter();
                 paramFirstName.ParameterName = "@FirstName";
-                paramFirstName.Value = user.FirstName;
+                paramFirstName.Value = user.fname;
                 cmd.Parameters.Add(paramFirstName);
 
                 SqlParameter paramLastName = new SqlParameter();
                 paramLastName.ParameterName = "@LastName";
-                paramLastName.Value = user.LastName;
+                paramLastName.Value = user.lname;
                 cmd.Parameters.Add(paramLastName);
 
                 con.Open();

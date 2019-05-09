@@ -50,7 +50,7 @@ namespace MealPlanner.Controllers
                 UserBusinessLayer userBusinessLayer = new UserBusinessLayer();
 
                 userBusinessLayer.SaveUser(user);
-                return RedirectToAction("Index", new { id = user.UserId });
+                return RedirectToAction("Index", new { id = user.userid });
             }
 
             return View(user);

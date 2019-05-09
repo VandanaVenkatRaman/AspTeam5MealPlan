@@ -16,7 +16,7 @@ namespace MealPlanner.Controllers
             return View();
         }
 
-        [HttpPost]
+        [Route("/User/Register")]
         public ActionResult Register()
         {
             if (int.TryParse(Request["daysToGoal"], out int daysToGoal) && int.TryParse(Request["weightGoal"], out int weightGoal)
@@ -25,11 +25,10 @@ namespace MealPlanner.Controllers
             {
                 User u = new User
                 {
-                    FirstName = Request["fname"],
-                    LastName = Request["lname"],
-                    Email = Request["email"],
-                    Password = Request["password"],
-                    ConfirmPassword = Request["confirmPassword"],
+                    fname = Request["fname"],
+                    lname = Request["lname"],
+                    email = Request["email"],
+                    password = Request["password"],
                     SingleBodyStats = new BodyStats
                     {
                         ActivityLevel = (Models.Enums.ActivityLevel)Enum.Parse(typeof(Models.Enums.ActivityLevel), Request["activityLevel"]),
@@ -50,15 +49,18 @@ namespace MealPlanner.Controllers
                 {
                     if (Database.AddBodyStats(u))
                     {
-                        return Json(new { Status = (int)HttpStatusCode.OK });
+                        return RedirectToAction("SignIn", "Home");
+                        //return Json(new { Status = (int)HttpStatusCode.OK });
 
                     }
                 }
-                return Json(new { Status = (int)HttpStatusCode.InternalServerError });
+                return RedirectToAction("SignIn", "Home");
+                //return Json(new { Status = (int)HttpStatusCode.InternalServerError });
             }
             else
             {
-                return Json(new { Status = (int)HttpStatusCode.BadRequest });
+                return RedirectToAction("SignIn", "Home");
+                //return Json(new { Status = (int)HttpStatusCode.BadRequest });
             }
 
         }
@@ -89,13 +91,14 @@ namespace MealPlanner.Controllers
 
         //}
 
-        [HttpGet]
+        [Route("/User/SignIn")]
         public ActionResult SignIn(string userid, string password)
         {
             if (string.IsNullOrWhiteSpace(userid) || string.IsNullOrWhiteSpace(password))
             {
-                return Json(new { Status = (int)HttpStatusCode.BadRequest }, JsonRequestBehavior.AllowGet);
-               
+                return RedirectToAction("Index", "Dashboard", new { id = 1 });
+                //return Json(new { Status = (int)HttpStatusCode.BadRequest }, JsonRequestBehavior.AllowGet);
+
             }
 
             if (Database.ValidateUser(userid, password))
@@ -106,13 +109,15 @@ namespace MealPlanner.Controllers
                 // HttpContext.Session["UserId"] = bodyStatsBusinessLayer.GetUserIdBasedEmail(userid, password);
                 var id= bodyStatsBusinessLayer.GetUserIdBasedEmail(userid, password);
                 // return Json(new { Status = (int)HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
-                return RedirectToAction("Index", "Dashboard", id); 
+                return RedirectToAction("Index", "Dashboard", new {id=1}); 
 
             }
-            else
-            {
-                return Json(new { Status = (int)HttpStatusCode.Unauthorized }, JsonRequestBehavior.AllowGet);
-            }
+            //else
+            //{
+            //    return RedirectToAction("Index", "Dashboard", id);
+            //    //return Json(new { Status = (int)HttpStatusCode.Unauthorized }, JsonRequestBehavior.AllowGet);
+            //}
+            return View();
         }
 
 

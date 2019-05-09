@@ -26,19 +26,19 @@ namespace MealPlanner.Models
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString))
             {
                 con.Open();
-                using (SqlCommand com = new SqlCommand("dbo.AddNewUser", con))
+                using (SqlCommand com = new SqlCommand("dbo.spAddNewUser", con))
                 {
                     com.CommandType = CommandType.StoredProcedure;
-                    com.Parameters.AddWithValue("FirstName", u.FirstName);
-                    com.Parameters.AddWithValue("LastName", u.LastName);
-                    com.Parameters.AddWithValue("Email", u.Email);
-                    com.Parameters.AddWithValue("Password", u.Password);
+                    com.Parameters.AddWithValue("FirstName", u.fname);
+                    com.Parameters.AddWithValue("LastName", u.lname);
+                    com.Parameters.AddWithValue("Email", u.email);
+                    com.Parameters.AddWithValue("Password", u.password);
                     using (SqlDataReader reader = com.ExecuteReader())
                     {
                         if (reader.HasRows && reader.Read())
                         {
                             int userId = reader.GetInt32(0);
-                            u.UserId = userId;
+                            u.userid = userId;
                             return true;
                         }
                     }
@@ -70,7 +70,7 @@ namespace MealPlanner.Models
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString))
             {
                 con.Open();
-                using (SqlCommand com = new SqlCommand("dbo.AddUserBodyStats", con))
+                using (SqlCommand com = new SqlCommand("dbo.spAddNewBodyStats", con))
                 {
                     double weight = convertWeight(u.SingleBodyStats.Weight);
                   
@@ -79,7 +79,7 @@ namespace MealPlanner.Models
                     
 
                     com.CommandType = CommandType.StoredProcedure;
-                    com.Parameters.AddWithValue("UserId", u.UserId);
+                    com.Parameters.AddWithValue("UserId", u.userid);
                     com.Parameters.AddWithValue("Height", (float)height);
                     com.Parameters.AddWithValue("Weight", (float)weight);
                     com.Parameters.AddWithValue("TargetWeight", (float)u.SingleBodyStats.TargetWeight);
@@ -126,7 +126,7 @@ namespace MealPlanner.Models
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString))
             {
                 con.Open();
-                using (SqlCommand com = new SqlCommand("dbo.ValidateUser", con))
+                using (SqlCommand com = new SqlCommand("dbo.spValidateUser", con))
                 {
                     com.CommandType = CommandType.StoredProcedure;
                     com.Parameters.AddWithValue("InputEmail", userName);
