@@ -16,7 +16,7 @@ namespace MealPlanner.Models
         public List<BodyStats> GetBodyStats(int id)
         {
             
-                string connectionString = ConfigurationManager.ConnectionStrings["MealPlannerContext"].ConnectionString;
+                string connectionString = ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString;
                 List<BodyStats> bodyStatss = new List<BodyStats>();
 
                 using (SqlConnection con = new SqlConnection(connectionString))
@@ -80,7 +80,7 @@ namespace MealPlanner.Models
      //   add new user's bodyStats
         public void AddBodyStats(BodyStats  bodyStats)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["MealPlannerContext"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand("spAddNewBodyStats", con);
@@ -156,7 +156,7 @@ namespace MealPlanner.Models
 
         public void SaveBodyStats(BodyStats bodyStats)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["MealPlannerContext"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand("spSaveBodyStats", con);
@@ -229,7 +229,7 @@ namespace MealPlanner.Models
         //DELETE one bodyStatus
         public void DeleteBodyStats(int id)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["MealPlannerContext"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand("spDeleteBodyStats", con);
@@ -249,7 +249,7 @@ namespace MealPlanner.Models
 
         public int GetUserId(int id)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["MealPlannerContext"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString;
             int UserID = 1;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -260,6 +260,39 @@ namespace MealPlanner.Models
                 paramBodyStatId.ParameterName = "@BodyStatId";
                 paramBodyStatId.Value = id;
                 cmd.Parameters.Add(paramBodyStatId);
+
+                con.Open();
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    UserID = Convert.ToInt32(rdr["UserId"]);
+                }
+
+
+            }
+
+            return UserID;
+        }
+
+        public int GetUserIdBasedEmail(string email, string password)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString;
+            int UserID = 1;
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spGetUserIdBasedEmail", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter paramEmail = new SqlParameter();
+                paramEmail.ParameterName = "@email";
+                paramEmail.Value = email;
+                cmd.Parameters.Add(paramEmail);
+
+                SqlParameter paramPassword = new SqlParameter();
+                paramPassword.ParameterName = "@Password";
+                paramPassword.Value = password;
+                cmd.Parameters.Add(paramPassword);
 
                 con.Open();
 

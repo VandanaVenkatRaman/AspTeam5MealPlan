@@ -63,18 +63,51 @@ namespace MealPlanner.Controllers
 
         }
 
+        //[HttpGet]
+        //public ActionResult SignIn(string email, string password)
+        //{
+        //    if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+        //    {
+        //        return Json(new { Status = (int)HttpStatusCode.BadRequest }, JsonRequestBehavior.AllowGet);
+        //    }
+
+        //    if (Database.ValidateUser(email, password))
+        //    {
+
+
+        //        return Json(new { Status = (int)HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
+        //        //return RedirectToAction("Index", "Dashboard", HttpContext.Session["UserId"]);
+        //        //BodyStatsBusinessLayer bodyStatsBusinessLayer = new BodyStatsBusinessLayer();
+
+        //        //HttpContext.Session["UserId"] = bodyStatsBusinessLayer.GetUserIdBasedEmail(email, password);
+        //    }
+        //    else
+        //    {
+        //        return Json(new { Status = (int)HttpStatusCode.Unauthorized }, JsonRequestBehavior.AllowGet);
+        //    }
+
+
+        //}
+
         [HttpGet]
         public ActionResult SignIn(string userid, string password)
         {
             if (string.IsNullOrWhiteSpace(userid) || string.IsNullOrWhiteSpace(password))
             {
                 return Json(new { Status = (int)HttpStatusCode.BadRequest }, JsonRequestBehavior.AllowGet);
+               
             }
 
             if (Database.ValidateUser(userid, password))
             {
-                HttpContext.Session["UserId"] = userid;
-                return Json(new { Status = (int)HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
+                //HttpContext.Session["UserId"] = userid;
+                BodyStatsBusinessLayer bodyStatsBusinessLayer = new BodyStatsBusinessLayer();
+
+                // HttpContext.Session["UserId"] = bodyStatsBusinessLayer.GetUserIdBasedEmail(userid, password);
+                var id= bodyStatsBusinessLayer.GetUserIdBasedEmail(userid, password);
+                // return Json(new { Status = (int)HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
+                return RedirectToAction("Index", "Dashboard", id); 
+
             }
             else
             {
@@ -82,9 +115,11 @@ namespace MealPlanner.Controllers
             }
         }
 
+
+
         public void SignOut()
         {
-
+          
         }
     }
 }

@@ -17,7 +17,7 @@ namespace MealPlanner.Models
         {
             User user = new User();
 
-            string connectionString = ConfigurationManager.ConnectionStrings["MealPlannerContext"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString;
                 
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
@@ -58,7 +58,7 @@ namespace MealPlanner.Models
 
         public void AddUser(User user)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["MealPlannerContext"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand("spAddNewUser", con);
@@ -102,7 +102,7 @@ namespace MealPlanner.Models
         //update user info
         public void SaveUser(User user)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["MealPlannerContext"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand("spSaveUser", con);
@@ -148,7 +148,7 @@ namespace MealPlanner.Models
         //DELETE USER
         public void DeleteUser(int id)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["MealPlannerContext"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand("spDeleteUser", con);
@@ -169,7 +169,7 @@ namespace MealPlanner.Models
 
         public int GetUserId(User user)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["MealPlannerContext"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString;
             int UserID = 1;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
