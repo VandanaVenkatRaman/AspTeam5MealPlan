@@ -20,6 +20,11 @@ namespace MealPlanner
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
               
             );
+            routes.MapRoute(
+           name: "Dashboard",
+           url: "Dashboard/{id}",
+           defaults: new { controller = "Dashboard", action = "Index" }
+       );
         }
     }
 }
