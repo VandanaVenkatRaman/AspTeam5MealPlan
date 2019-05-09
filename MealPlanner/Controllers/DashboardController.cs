@@ -16,7 +16,8 @@ namespace MealPlanner.Controllers
         //output user table info
         public ActionResult Index()
         {
-            if (Session["mp"].Equals(false))
+            bool mp = Convert.ToBoolean(Session["mp"]);
+            if (!mp)
             {
                 UserBusinessLayer userBusinessLayer = new UserBusinessLayer();
                 User user = userBusinessLayer.GetUser((int)Session["id"]);
@@ -32,6 +33,11 @@ namespace MealPlanner.Controllers
         public ActionResult DailyPlan()
         {
             return View(GetAllMealPlans().LastOrDefault());
+        }
+
+        public ActionResult DailyPlan(int mealPlanId)
+        {
+            return View(LoadMealPlan(mealPlanId));
         }
 
         // Edit user table info
