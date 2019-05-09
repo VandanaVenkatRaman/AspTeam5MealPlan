@@ -1,0 +1,40 @@
+﻿@model MealPlanner.Models.MealPlan
+
+@{
+    ViewBag.Title = "HistoricalMealPlan";
+    var meal = Model.Meals;
+
+}
+
+<div style="font-family:Arial">
+
+    <h2>HistoricalMealPlan</h2>
+
+   
+    <table class="table">
+        @foreach (var item in meal)
+        {
+
+        <tr>
+            <th>
+                <a href="Url.Action(DailyPlan(model.MealPlanId))">model => item.Id</a>
+            </th>
+            <th>
+                model => item[0].Title
+            </th>
+            <th>
+                model => item[1].Title
+            </th>
+            <th>
+                model => item[2].Title
+            </th>
+            <th>
+
+            </th>
+
+        </tr>
+
+        }
+    </table>
+
+</div>
