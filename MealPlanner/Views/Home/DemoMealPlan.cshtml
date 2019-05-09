@@ -26,23 +26,18 @@
 </head>
 <body>
     <h1>Demo Meal Plan - Using 2000 Calories</h1>
+
     @{
-                    /**/
+        var demo = ViewBag.Message;
 
-                    var demo = ViewBag.Message;
-
-
-                    foreach (var m in demo["meals"])
-                    {
-                        <div class="card" style="margin-bottom: 10px;">
-                            <div class="card-body">
-                                <h4 class="card-title">@m["title"]</h4>
-                                <h6 class="text-muted card-subtitle mb-2">Ready In @m["readyInMinutes"] Minutes</h6>
-                                <p class="card-text">ID: @m["id"]</p>
-                            </div>
-                        </div>
-
-                    }
+        foreach (var m in demo["meals"])
+        {
+            <h2>Title: @m["title"]</h2>
+            <h3>Ready In (Minutes): @m["readyInMinutes"]</h3>
+            <h3>Serves: @m["servings"]</h3>
+            <h4>ID: @m["id"]</h4>
+            <br />
+        }
     }
 </body>
 </html>
