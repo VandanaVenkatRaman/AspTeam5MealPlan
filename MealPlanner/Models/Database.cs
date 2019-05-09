@@ -103,6 +103,24 @@ namespace MealPlanner.Models
                 return false;
             }
         }
+        //public static bool ValidateUser(string email, string Password)
+        //{
+        //    using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString))
+        //    {
+        //        con.Open();
+        //        using (SqlCommand com = new SqlCommand("dbo.ValidateUser", con))
+        //        {
+        //            com.CommandType = CommandType.StoredProcedure;
+        //            com.Parameters.AddWithValue("InputEmail", email);
+        //            com.Parameters.AddWithValue("InputPassword", Password);
+        //            using (SqlDataReader reader = com.ExecuteReader())
+        //            {
+        //                return reader.HasRows;
+        //            }
+        //        }
+        //    }
+        //}
+
         public static bool ValidateUser(string userName, string Password)
         {
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString))
@@ -120,6 +138,9 @@ namespace MealPlanner.Models
                 }
             }
         }
+
+
+
         public static double convertWeight(double pounds)
         {
             double kg;
