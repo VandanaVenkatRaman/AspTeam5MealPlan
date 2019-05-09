@@ -10,7 +10,7 @@ namespace MealPlanner.Models
 {
     public class UserBusinessLayer
     {
-       
+
 
 
         public User GetUser(int id)
@@ -18,41 +18,41 @@ namespace MealPlanner.Models
             User user = new User();
 
             string connectionString = ConfigurationManager.ConnectionStrings["MealPlanDatabaseConnection"].ConnectionString;
-                
-                using (SqlConnection con = new SqlConnection(connectionString))
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spGetUser", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                SqlParameter paramUserID = new SqlParameter();
+                paramUserID.ParameterName = "@UserID";
+                paramUserID.Value = id;
+                cmd.Parameters.Add(paramUserID);
+
+                con.Open();
+
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
                 {
-                    SqlCommand cmd = new SqlCommand("spGetUser", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    user.userid = id;
+                    user.fname = rdr["FirstName"].ToString();
+                    user.lname = rdr["LastName"].ToString();
+                    user.email = rdr["Email"].ToString();
+                    user.password = rdr["Password"].ToString();
 
 
-                    SqlParameter paramUserID = new SqlParameter();
-                    paramUserID.ParameterName = "@UserID";
-                    paramUserID.Value = id;
-                    cmd.Parameters.Add(paramUserID);
-
-                    con.Open();
-               
-    
-                    SqlDataReader rdr = cmd.ExecuteReader();
-                    while (rdr.Read())
-                    {
-                  
-                       user.userid = id;
-                         user.fname = rdr["FirstName"].ToString();
-                        user.lname = rdr["LastName"].ToString();
-                        user.email = rdr["Email"].ToString();
-                        user.password = rdr["Password"].ToString();
-
-
-                    }
                 }
-                return user;
             }
+            return user;
+        }
 
-        
 
 
-       
+
+
 
         // insert user into database in regirstration
 

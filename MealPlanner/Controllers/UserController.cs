@@ -65,39 +65,14 @@ namespace MealPlanner.Controllers
 
         }
 
-        //[HttpGet]
-        //public ActionResult SignIn(string email, string password)
-        //{
-        //    if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
-        //    {
-        //        return Json(new { Status = (int)HttpStatusCode.BadRequest }, JsonRequestBehavior.AllowGet);
-        //    }
-
-        //    if (Database.ValidateUser(email, password))
-        //    {
-
-
-        //        return Json(new { Status = (int)HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
-        //        //return RedirectToAction("Index", "Dashboard", HttpContext.Session["UserId"]);
-        //        //BodyStatsBusinessLayer bodyStatsBusinessLayer = new BodyStatsBusinessLayer();
-
-        //        //HttpContext.Session["UserId"] = bodyStatsBusinessLayer.GetUserIdBasedEmail(email, password);
-        //    }
-        //    else
-        //    {
-        //        return Json(new { Status = (int)HttpStatusCode.Unauthorized }, JsonRequestBehavior.AllowGet);
-        //    }
-
-
-        //}
-
         [Route("/User/SignIn")]
         public ActionResult SignIn(string userid, string password)
         {
             if (string.IsNullOrWhiteSpace(userid) || string.IsNullOrWhiteSpace(password))
             {
-                return RedirectToAction("Index", "Dashboard", new { id = 1 });
+                Session["id"] = 1;
                 //return Json(new { Status = (int)HttpStatusCode.BadRequest }, JsonRequestBehavior.AllowGet);
+                return RedirectToAction("Index", "Dashboard");
 
             }
 
@@ -107,9 +82,9 @@ namespace MealPlanner.Controllers
                 BodyStatsBusinessLayer bodyStatsBusinessLayer = new BodyStatsBusinessLayer();
 
                 // HttpContext.Session["UserId"] = bodyStatsBusinessLayer.GetUserIdBasedEmail(userid, password);
-                var id= bodyStatsBusinessLayer.GetUserIdBasedEmail(userid, password);
+                Session["id"] = bodyStatsBusinessLayer.GetUserIdBasedEmail(userid, password);
                 // return Json(new { Status = (int)HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
-                return RedirectToAction("Index", "Dashboard", new {id=1}); 
+                return RedirectToAction("Index", "Dashboard");
 
             }
             //else

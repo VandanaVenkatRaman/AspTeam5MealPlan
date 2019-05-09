@@ -129,8 +129,8 @@ namespace MealPlanner.Models
                 using (SqlCommand com = new SqlCommand("dbo.spValidateUser", con))
                 {
                     com.CommandType = CommandType.StoredProcedure;
-                    com.Parameters.AddWithValue("InputEmail", userName);
-                    com.Parameters.AddWithValue("InputPassword", Password);
+                    com.Parameters.AddWithValue("@InputEmail", userName);
+                    com.Parameters.AddWithValue("@InputPassword", Password);
                     using (SqlDataReader reader = com.ExecuteReader())
                     {
                         return reader.HasRows;

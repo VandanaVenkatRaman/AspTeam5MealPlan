@@ -2,8 +2,6 @@
 
 @{
     ViewBag.Title = "BodyStats";
-
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div style="font-family:Arial">
    
@@ -99,9 +97,9 @@
                     @Html.DisplayFor(modelItem => item.AddDate)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "EditBodyStats", new { UserId = item.UserId, id = item.BodyStatId }) |
+                    @Html.ActionLink("Edit", "EditBodyStats", new { bodyStatId = item.BodyStatId }) |
 
-                    <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete record wiht ID= @item.BodyStatId');" />
+                    <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete record with ID= @item.BodyStatId');" />
                 </td>
             </tr>
                 }
